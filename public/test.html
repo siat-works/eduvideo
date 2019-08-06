@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>课后测试</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- 引入 Bootstrap -->
+      <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+      <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+      <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
+      <!--[if lt IE 9]>
+         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+      <![endif]-->
+	  <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+      <script src="https://code.jquery.com/jquery.js"></script>
+      <!-- 包括所有已编译的插件 -->
+      <script src="js/bootstrap.min.js"></script>
+	  <script type="text/javascript">
+		function f1(){
+		var v=document.getElementById("obj1");
+		location.href="http://www.baidu.com/baidu?wd="+v.value;
+		}
+	  </script>
+</head>
+<body style="background-color:currentColor">
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<nav class="navbar navbar-default nofollow" role="navigation">
+						<div class="navbar-header">
+							 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							 <span class="sr-only">切换导航</span><span class="icon-bar"></span>
+							 <span class="icon-bar"></span><span class="icon-bar"></span>
+							 </button> <a rel="nofollow" class="navbar-brand" href="index.html">主页</a>
+						</div>
+						
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							<ul class="nav navbar-nav">
+								<li>
+									<a rel="nofollow" href="video.html">视频</a>
+								</li>
+								<li class="dropdown">
+									 <a rel="nofollow" href="test.html" class="dropdown-toggle" data-toggle="dropdown">测试<strong class="caret"></strong></a>
+									<ul class="dropdown-menu">
+										<li>
+											<a rel="nofollow" href="preTest.html">课前调查</a>
+										</li>
+										
+										<li class="divider">
+										</li>
+										<li>
+											<a rel="nofollow" href="test.html">课堂测试</a>
+										</li>
+										<li class="divider">
+										</li>
+										<li>
+											<a rel="nofollow" href="postTest.html">课后调查</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<ul class="nav navbar-nav navbar-right">
+								<li>
+									<a rel="nofollow" id="user">登录</a>
+								</li>
+							</ul>
+						</div>
+				
+					</nav>
+                    <div class="col-md-12 column" style="background-color:white">
+                        <div class="row clearfix">
+                            <div class="col-md-12 column">
+                                <h3>
+                                    一、单项选择题
+                                 </h3>
+                                 <p>
+                                    1.XPath是一门什么语言？（）
+                                 </p>
+                                 <input type="radio" name="answer1" value="a">A. XML路径语言<br>
+                                 <input type="radio" name="answer1" value="b">B. HTML语言<br>
+                                 <input type="radio" name="answer1" value="c">C. UML语言<br>
+                                 <input type="radio" name="answer1" value="d">D. Male<br>
+                                 <p>
+                                     2. requests.get()方法返回值是什么？（）
+                                 </p>
+                                 <input type="radio" name="answer2" value="a">A. Request对象<br>
+                                 <input type="radio" name="answer2" value="b">B. Response对象<br>
+                                 <input type="radio" name="answer2" value="c">C. POST对象<br>
+                                 <input type="radio" name="answer2" value="d">D. GET对象<br>
+                                 <p>
+                                     3. requests.get(url).text指的是什么？（）
+                                 </p>
+                                 <input type="radio" name="answer3" value="a">A. HTML对象<br>
+                                 <input type="radio" name="answer3" value="b">B. Response对象<br>
+                                 <input type="radio" name="answer3" value="c">C. Request对象<br>
+                                 <input type="radio" name="answer3" value="d">D. XML对象<br>
+                                 <p>
+                                     4. Python是一门（）编程语言
+                                 </p>
+                                 <input type="radio" name="answer4" value="a">A. 跨平台的<br>
+                                 <input type="radio" name="answer4" value="b">B. 只能运行在Windows下的<br>
+                                 <input type="radio" name="answer4" value="c">C. 只能运行在Linux下的<br>
+                                 <input type="radio" name="answer4" value="d">D. 只能运行在Android下的<br>
+                                 <p>
+                                     5. 使用Python3的理由是（）
+                                 </p>
+                                 <input type="radio" name="answer5" value="a">A. Python2目前已不能使用<br>
+                                 <input type="radio" name="answer5" value="b">B. 爬虫技术不支持Python2<br>
+                                 <input type="radio" name="answer5" value="c">C. Python3解决了中文乱码问题<br>
+                                 <input type="radio" name="answer5" value="d">D. Python2只有Windows版<br>
+                             </div>
+                             </div>
+                             <div class="row clearfix" style="background-color:white">
+                                <div class="col-md-12 column">
+                                    <h3>
+                                        二、 简答题
+                                    </h3>
+                                    <p>1、请简述网页请求响应模型</p>
+                                    <textarea type="text" placeholder="在此处输入答案" class="form-control" id="text1" cols="60" rows="6"></textarea><br/>
+                                    <p>2、请简述爬虫框架的基本工作原理</p>
+                                    <textarea type="text" placeholder="在此处输入答案" class="form-control" id="text2"cols="60" rows="6"></textarea><br/>
+                                    <p>3、请简述爬虫获取数据的操作步骤</p>
+                                    <textarea type="text" placeholder="在此处输入答案" class="form-control" id="text3" cols="60" rows="6"></textarea><br/>
+                                </div>
+                                <div class="col-md-12 column">
+                                    <h3>
+                                        三、操作题
+                                    </h3>
+                                    <p>利用所学知识抓取豆瓣的任意一页图书数据，要求至少获取书名、作者和出版社信息，并且考虑多个作者和出版社的情况</p>
+                                    <textarea type="text" placeholder="在此处输入答案" class="form-control" id="code" cols="60" rows="20"></textarea><br/>
+                                </div>
+                            </div>
+                    </div>
+				</div>
+			</div>
+			<div class="row clearfix" style="margin-top:1%">
+				<div class="col-md-12 column">
+					 <a rel="nofollow" href="#" class="btn nofollow" type="button" style="margin-left:45%;color:wheat;background-color:black;">TOP</a>
+					 <button rel="nofollow" class="btn nofollow" type="button" style="margin-left:0%;color:wheat;background-color:red;" id="submit">提交</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+
+<script src="js/test.js"></script>
+</html>

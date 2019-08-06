@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="047c8ce2-8bd4-422f-b857-0b4f6ef36e40" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/edu_video.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/eduvideo.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/nohup.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npm-debug.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/bootstrap-theme.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/bootstrap-theme.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/bootstrap-theme.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/postTest.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/postTest.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/signup.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/future/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/future/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/future/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/future1/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/future1/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/future1/1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/future1/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/future1/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/future1/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/future2/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/future2/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/future2/3.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/future2/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/future2/3.jpg.lnk" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/history0/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/history0/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/history0/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/history0/4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/history0/readme.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/history1/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/history1/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/history1/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/history1/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/history1/readme.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/history2/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/history2/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/history2/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/history2/3.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/history2/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/img/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/img/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/img/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/img/a.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/img/a_002.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/img/city.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/img/favicon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/img/icon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/img/people.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/img/sports.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/index/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/index/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/index/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/indexhistory/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/indexhistory/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/indexhistory/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/indexhistory/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/indexhistory/readme.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/nowdays1/data1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/nowdays1/data2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skin/nowdays1/data3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/video.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/index0.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/users.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/users0.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/error.jade" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/index.jade" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/layout.jade" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
+  <component name="ProjectId" id="1OdPfXZ3hAUQD2Cqf2q7ej3Qx3O" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\project\edu_video\public" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="047c8ce2-8bd4-422f-b857-0b4f6ef36e40" name="Default Changelist" comment="" />
+      <created>1564304264571</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1564304264571</updated>
+      <workItem from="1564304266755" duration="177000" />
+      <workItem from="1564304608857" duration="4525000" />
+      <workItem from="1564385028698" duration="7269000" />
+      <workItem from="1564716930355" duration="17006000" />
+      <workItem from="1564814589100" duration="14078000" />
+      <workItem from="1564899671147" duration="9237000" />
+      <workItem from="1564968318932" duration="8285000" />
+      <workItem from="1564986709271" duration="8867000" />
+      <workItem from="1565055649902" duration="2525000" />
+      <workItem from="1565058961943" duration="4555000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="1">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="range">
+                    <value>
+                      <list>
+                        <option value="HEAD..origin/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/signup.html</url>
+          <line>86</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

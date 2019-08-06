@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>课后测试</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 引入 Bootstrap -->
+    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+    <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- 包括所有已编译的插件 -->
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        function f1(){
+            var v=document.getElementById("obj1");
+            location.href="http://www.baidu.com/baidu?wd="+v.value;
+        }
+    </script>
+</head>
+<body style="background-color:currentColor">
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <nav class="navbar navbar-default nofollow" role="navigation">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">切换导航</span><span class="icon-bar"></span>
+                                <span class="icon-bar"></span><span class="icon-bar"></span>
+                            </button> <a rel="nofollow" class="navbar-brand" href="index.html">主页</a>
+                        </div>
+
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li>
+                                    <a rel="nofollow" href="video.html">视频</a>
+                                </li>
+                                <li class="dropdown">
+                                    <a rel="nofollow" href="test.html" class="dropdown-toggle" data-toggle="dropdown">测试<strong class="caret"></strong></a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a rel="nofollow" href="preTest.html">课前调查</a>
+                                        </li>
+
+                                        <li class="divider">
+                                        </li>
+                                        <li>
+                                            <a rel="nofollow" href="test.html">课堂测试</a>
+                                        </li>
+                                        <li class="divider">
+                                        </li>
+                                        <li>
+                                            <a rel="nofollow" href="future2.html">课后调查</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    <a rel="nofollow" id="user">登录</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </nav>
+                    <div class="col-md-12 column" style="background-color:white">
+                        <div class="row clearfix">
+                            <div class="col-md-12 column">
+                                <h3>
+                                    一、单项选择题
+                                </h3>
+                                <p>
+                                    1.您对刚才课程的这位授课教师的普通话标准程度评价如何？（1：非常差，7：非常好）
+                                </p>
+                                <input type="radio" name="answer1" value="1">1
+                                <input type="radio" name="answer1" value="2">2
+                                <input type="radio" name="answer1" value="3">3
+                                <input type="radio" name="answer1" value="4">4
+                                <input type="radio" name="answer1" value="5">5
+                                <input type="radio" name="answer1" value="6">6
+                                <input type="radio" name="answer1" value="7">7
+                                <p>
+                                    2. 您对刚才课程的这位授课教师的课程内容讲解速度评价如何？（1：非常差，7：非常好）
+                                </p>
+                                <input type="radio" name="answer2" value="1">1
+                                <input type="radio" name="answer2" value="2">2
+                                <input type="radio" name="answer2" value="3">3
+                                <input type="radio" name="answer2" value="4">4
+                                <input type="radio" name="answer2" value="5">5
+                                <input type="radio" name="answer2" value="6">6
+                                <input type="radio" name="answer2" value="7">7
+                                <p>
+                                    3. 您对刚才课程的这位授课教师的课程内容熟悉程度评价如何？（1：非常差，7：非常好）
+                                </p>
+                                <input type="radio" name="answer3" value="1">1
+                                <input type="radio" name="answer3" value="2">2
+                                <input type="radio" name="answer3" value="3">3
+                                <input type="radio" name="answer3" value="4">4
+                                <input type="radio" name="answer3" value="5">5
+                                <input type="radio" name="answer3" value="6">6
+                                <input type="radio" name="answer3" value="7">7
+                                <p>
+                                    4. 您认为这位授课教师表现出的性格特质是感性还是理性？（1：非常感性，7：非常理性）
+                                </p>
+                                <input type="radio" name="answer4" value="1">1
+                                <input type="radio" name="answer4" value="2">2
+                                <input type="radio" name="answer4" value="3">3
+                                <input type="radio" name="answer4" value="4">4
+                                <input type="radio" name="answer4" value="5">5
+                                <input type="radio" name="answer4" value="6">6
+                                <input type="radio" name="answer4" value="7">7
+                                <p>
+                                    5. 您认为这位授课教师表现出的性格特质是依赖性还是独立性？（1：非常依赖性，7：非常独立性）
+                                </p>
+                                <input type="radio" name="answer5" value="1">1
+                                <input type="radio" name="answer5" value="2">2
+                                <input type="radio" name="answer5" value="3">3
+                                <input type="radio" name="answer5" value="4">4
+                                <input type="radio" name="answer5" value="5">5
+                                <input type="radio" name="answer5" value="6">6
+                                <input type="radio" name="answer5" value="7">7
+                                <p>
+                                    6. 您认为这位授课教师表现出的性格特质是柔弱还是坚强？（1：非常柔弱，7：非常坚强）
+                                </p>
+                                <input type="radio" name="answer6" value="1">1
+                                <input type="radio" name="answer6" value="2">2
+                                <input type="radio" name="answer6" value="3">3
+                                <input type="radio" name="answer6" value="4">4
+                                <input type="radio" name="answer6" value="5">5
+                                <input type="radio" name="answer6" value="6">6
+                                <input type="radio" name="answer6" value="7">7
+                                <p>
+                                    7. 如果下学期开设整学期的《Python语言程序设计》，您是否愿意选修，以进一步提高编程能力？（1：非常不愿意，7：非常愿意）
+                                </p>
+                                <input type="radio" name="answer7" value="1">1
+                                <input type="radio" name="answer7" value="2">2
+                                <input type="radio" name="answer7" value="3">3
+                                <input type="radio" name="answer7" value="4">4
+                                <input type="radio" name="answer7" value="5">5
+                                <input type="radio" name="answer7" value="6">6
+                                <input type="radio" name="answer7" value="7">7
+                                <p>
+                                    8. 您对“计算机程序设计和编程”这类课程是否感兴趣？（1：非常不感兴趣，7：非常感兴趣）
+                                </p>
+                                <input type="radio" name="answer8" value="1">1
+                                <input type="radio" name="answer8" value="2">2
+                                <input type="radio" name="answer8" value="3">3
+                                <input type="radio" name="answer8" value="4">4
+                                <input type="radio" name="answer8" value="5">5
+                                <input type="radio" name="answer8" value="6">6
+                                <input type="radio" name="answer8" value="7">7
+                                <p>
+                                    9. 您认为“计算机程序设计和编程”这类课程对您未来从事的工作是否有用？（1：一点用没有，7：非常重要）
+                                </p>
+                                <input type="radio" name="answer9" value="1">1
+                                <input type="radio" name="answer9" value="2">2
+                                <input type="radio" name="answer9" value="3">3
+                                <input type="radio" name="answer9" value="4">4
+                                <input type="radio" name="answer9" value="5">5
+                                <input type="radio" name="answer9" value="6">6
+                                <input type="radio" name="answer9" value="7">7
+                                <p>
+                                    10. 您未来从事的工作是否会用到程序设计语言和编程？ （1：一定不会用到，7：一定会用到）
+                                </p>
+                                <input type="radio" name="answer10" value="1">1
+                                <input type="radio" name="answer10" value="2">2
+                                <input type="radio" name="answer10" value="3">3
+                                <input type="radio" name="answer10" value="4">4
+                                <input type="radio" name="answer10" value="5">5
+                                <input type="radio" name="answer10" value="6">6
+                                <input type="radio" name="answer10" value="7">7
+                                <p>
+                                    11. 您将来就业从事计算机编程工作的可能性大吗？ （1：一定不可能，7：一定会）
+                                </p>
+                                <input type="radio" name="answer11" value="1">1
+                                <input type="radio" name="answer11" value="2">2
+                                <input type="radio" name="answer11" value="3">3
+                                <input type="radio" name="answer11" value="4">4
+                                <input type="radio" name="answer11" value="5">5
+                                <input type="radio" name="answer11" value="6">6
+                                <input type="radio" name="answer11" value="7">7
+                                <p>
+                                    12. 如果下学期开设整学期的《Python语言程序设计》，您对授课老师的性别是否有偏好？（1：非常偏好女性教师，7：非常偏好男性教师）
+                                </p>
+                                <input type="radio" name="answer12" value="1">1
+                                <input type="radio" name="answer12" value="2">2
+                                <input type="radio" name="answer12" value="3">3
+                                <input type="radio" name="answer12" value="4">4
+                                <input type="radio" name="answer12" value="5">5
+                                <input type="radio" name="answer12" value="6">6
+                                <input type="radio" name="answer12" value="7">7
+                                <p>
+                                    13. 您认为刚才实验课程的那位授课教师的性别：
+                                </p>
+                                <input type="radio" name="teacher_gender" value="male">男
+                                <input type="radio" name="teacher_gender" value="female">女
+                            </div>
+                        </div>
+                        <div class="row clearfix" style="background-color:white">
+                            <div class="col-md-12 column">
+                                <p>14. 您的实验编号:</p>
+                                <input type="text" placeholder="在此处输入您的试验编号" class="form-control" id="test_num"><br/>
+                                <p>15. 您此前是否修过《程序设计语言》或类似的编程课程，成绩如何？</p>
+                                <input type="radio" name="learned" value="yes">A. 修过:
+                                <input type="radio" name="grades" value="60">60以下
+                                <input type="radio" name="grades" value="60-69">60-69
+                                <input type="radio" name="grades" value="70-79">70-79
+                                <input type="radio" name="grades" value="80-89">80-89
+                                <input type="radio" name="grades" value="90-100">90-100<br>
+                                <input type="radio" name="learned" value="no">B. 没修过任何编程类课程
+                            </div>
+                            <div class="col-md-12 column">
+                                <p>16. 您的性别：</p>
+                                <input type="radio" name="gender" value="male">男
+                                <input type="radio" name="gender" value="female">女
+                                <p>17. 您的年龄:</p>
+                                <input type="number" placeholder="在此处输入您的年龄" class="form-control" id="age"><br/>
+                                <p>18. 您的民族:</p>
+                                <input type="text" placeholder="在此处输入您的民族" class="form-control" id="nation"><br/>
+                                <p>19. 您的生源地: （**省**市）</p>
+                                <input type="text" placeholder="在此处输入您的生源地" class="form-control" id="address"><br/>
+                                <p>20. 您的专业</p>
+                                <input type="text" placeholder="在此处输入您的专业" class="form-control" id="major"><br/>
+                                <p>21. 您的年级:</p>
+                                <input type="text" placeholder="在此处输入您的年级" class="form-control" id="level"><br/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix" style="margin-top:1%">
+                <div class="col-md-12 column">
+                    <a rel="nofollow" href="#" class="btn nofollow" type="button" style="margin-left:45%;color:wheat;background-color:black;">TOP</a>
+                    <button rel="nofollow" class="btn nofollow" type="button" style="margin-left:0%;color:wheat;background-color:red;" id="submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="js/postTest.js"></script>
+</html>
