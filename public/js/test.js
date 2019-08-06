@@ -4,9 +4,10 @@ answerData = {
     choice: [],
     text: [],
     code: '',
-    answeredNum: 0,
     score: 0,
+    video: expdata.videoId,
     phone: expdata == null ? -1 : expdata.phone,
+    answeredNum: 0
 };
 
 var server = server_config;
@@ -14,16 +15,18 @@ var server = server_config;
 $(document).ready(function () {
     // answerData=null;
     // window.localStorage.setItem("answer",JSON.stringify(answerData));
+    console.log(expdata);
     if (expdata != null) {
         var user = $('#user').text(expdata.phone);
         console.log(user);
-    } else if (expdata == null || expdata.phone.length == 0) {
+    }
+    if (expdata == null || expdata.phone.length == 0) {
         alert("登录后才能完成后续步骤哦");
         $(location).attr("href", "signup.html");
     } else if (expdata.preTest == false) {
         alert("请先完成课前调查");
         $(location).attr("href", "preTest.html");
-    } else if (expdata.test) {
+    } else if (expdata.test==true) {
         alert("您已完成该步骤，请完成课后调查");
         $(location).attr("href", "postTest.html");
     }
@@ -34,9 +37,10 @@ $(document).ready(function () {
             choice: [],
             text: [],
             code: [],
-            answeredNum: 0,
             score: 0,
+            video: expdata.videoId,
             phone: expdata == null ? -1 : expdata.phone,
+            answeredNum: 0
         }
     }
     console.log(answerData);
@@ -48,9 +52,10 @@ $(document).ready(function () {
             choice: [],
             text: [],
             code: [],
-            answeredNum: 0,
             score: 0,
+            video: expdata.videoId,
             phone: expdata == null ? -1 : expdata.phone,
+            answeredNum: 0
         }
     }
 });
@@ -154,6 +159,13 @@ $('#submit').click(function (e) {
                 console.log(res.body);
                 if (res.status == 0) {
                     alert("提交成功");
+                    expdata.test=true;
+                    window.localStorage.setItem("userInfo",JSON.stringify(expdata));
+                    $.ajax('http://' + server.ip + ':' + server.port + '/upload', {
+                            method: "post",
+                            data: {data: localStorage.getItem('action_record')},
+                        }
+                    );
                     $(location).attr('href', 'postTest.html');
                     return;
                 } else if (res.status == 1) {

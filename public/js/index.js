@@ -1,6 +1,7 @@
 var expdata = JSON.parse(window.localStorage.getItem("userInfo"));
 
 $(document).ready(function () {
+    // expdata=null;
     if (expdata != null) {
         $('#user').text(expdata.phone);
     }

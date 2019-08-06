@@ -1,23 +1,18 @@
-var playtime;
 var pausetime;
 var currenttime;
 var firsttime;//第一次快进的世界
-var isFirsttime;
-var seekstate;
-var mousedown;
-var seeking;
-var seeked;
 var expdata = JSON.parse(window.localStorage.getItem("userInfo"));
 var playingtime;
 var lasttime;
 var isLRKey;//是否触发左右键键盘事件
 var actionlist = new Array();
-var userid = 101;
+var userid = expdata==null?-1:expdata.phone;
 localStorage.setItem("action_record", "");
 var server = server_config;
 
 
 $(document).ready(function () {
+    console.log(expdata);
     if (expdata != null) {
         $('#user').text(expdata.phone);
         console.log(expdata);
@@ -26,13 +21,14 @@ $(document).ready(function () {
         } else if (expdata.videoId == 1) {
             $('#videoPart').attr("src", "for2.mp4");
         }
-    } else if (expdata == null || expdata.phone.length == 0) {
+    }
+    if (expdata == null || expdata.phone.length == 0) {
         alert("登录后才能完成后续步骤哦");
         $(location).attr("href", "signup.html");
     } else if (expdata.preTest == false) {
         alert("请先完成课前调查");
         $(location).attr("href", "preTest.html");
-    } else if (expdata.postTest) {
+    } else if (expdata.test==true) {
         alert("您已完成该步骤，请完成课后调查");
         $(location).attr("href", "postTest.html");
     }
@@ -76,15 +72,6 @@ window.onload = function () {
     myVideo.addEventListener("play", checkplayed);//添加视频播放监听
     myVideo.addEventListener("pause", checkplayed);//添加视频暂停监听
     myVideo.addEventListener("timeupdate", checktimeupdate);//添加视频进度监听
-}
-
-function sendpostdata() {//发送post请求和相应的data
-
-    $.ajax('http://' + server.ip + ':' + server.port + '/index/upload', {
-            method: "post",
-            data: {data: localStorage.getItem('action_record')},
-        }
-    );
 }
 
 function Actionstroge(id, time, action, sktime) {//存储action和id等数据到localstorage中
@@ -137,9 +124,9 @@ function keyUp(e) {//左右键松开事件
     if (keycode == 37 || keycode == 39) {
         console.log((document.getElementById("videoPart").currentTime - firsttime) * isLRKey);//键盘左右键快进后退大概多少秒
         if (keycode == 37) {
-            Actionstroge(userid, myVideo.currentTime.toString(), "left_start", String((document.getElementById("videoPart").currentTime - firsttime) * isLRKey));
+            Actionstroge(userid, myVideo.currentTime.toString(), "left_start", String(Math.abs(document.getElementById("videoPart").currentTime - firsttime) * isLRKey));
         } else {
-            Actionstroge(userid, myVideo.currentTime.toString(), "right_start", String((document.getElementById("videoPart").currentTime - firsttime) * isLRKey));
+            Actionstroge(userid, myVideo.currentTime.toString(), "right_start", String(Math.abs(document.getElementById("videoPart").currentTime - firsttime) * isLRKey));
         }
         isLRKey = 0;
     }
@@ -183,10 +170,10 @@ function firsttimeupdate() {//记录鼠标首次快进或者后退前的时间
     var changetime = firsttime - myVideo.currentTime;
     if (changetime > 0) {
         console.log("left");
-        Actionstroge(userid, myVideo.currentTime.toString(), "left", String(changetime));
+        Actionstroge(userid, myVideo.currentTime.toString(), "left", String(Math.abs(changetime)));
     } else {
         console.log("right");
-        Actionstroge(userid, myVideo.currentTime.toString(), "right", String(changetime));
+        Actionstroge(userid, myVideo.currentTime.toString(), "right", String(Math.abs(changetime)));
     }
     firsttime = myVideo.currentTime;
 }
