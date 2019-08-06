@@ -6,8 +6,10 @@ answerData = {
     code: '',
     answeredNum: 0,
     score: 0,
-    phone:expdata == null ? -1 : expdata.phone,
+    phone: expdata == null ? -1 : expdata.phone,
 };
+
+var server = server_config;
 
 $(document).ready(function () {
     // answerData=null;
@@ -146,7 +148,7 @@ $('#submit').click(function (e) {
         data = answerData;
         $.ajax({
             type: 'post',
-            url: 'http://localhost:65535/users/test',
+            url: 'http://' + server.ip + ':' + server.port + '/users/test',
             data,
             success: function (res) {
                 console.log(res.body);

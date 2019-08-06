@@ -16,6 +16,8 @@ expdata = {
     videoId: -1
 };
 
+var server = server_config;
+
 /**
  * 处理用户登录信息
  */
@@ -45,10 +47,11 @@ $('#submit').click(function (e) {
     // alert("手机号输入有误，请检查后重新输入")
 
     var userphone = $('#phone').val();
+    var data;
     data = {phone: userphone};
     $.ajax({
         type: 'post',
-        url: 'http://localhost:65535/users/login',
+        url: 'http://' + server.ip + ':' + server.port + '/users/login',
         data,
         success: function (res) {
             console.log(res);
@@ -56,7 +59,7 @@ $('#submit').click(function (e) {
                 $(location).attr('href', 'preTest.html');
                 expdata.id = res.id;
                 expdata.phone = userphone;
-                expdata.videoId=res.videoId;
+                expdata.videoId = res.videoId;
                 console.log(expdata);
                 window.localStorage.setItem("userInfo", JSON.stringify(expdata));
                 $('#user').text(userphone);

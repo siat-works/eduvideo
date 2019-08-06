@@ -7,35 +7,37 @@ var seekstate;
 var mousedown;
 var seeking;
 var seeked;
-var expdata=JSON.parse(window.localStorage.getItem("userInfo"));
+var expdata = JSON.parse(window.localStorage.getItem("userInfo"));
 var playingtime;
 var lasttime;
 var isLRKey;//是否触发左右键键盘事件
 var actionlist = new Array();
 var userid = 101;
 localStorage.setItem("action_record", "");
+var server = server_config;
 
 
 $(document).ready(function () {
-    if (expdata!=null){
+    if (expdata != null) {
         $('#user').text(expdata.phone);
         console.log(expdata);
-        if (expdata.videoId==0){
-            $('#videoPart').attr("src","for1.mp4");
-        }else if (expdata.videoId==1){
-            $('#videoPart').attr("src","for2.mp4");
+        if (expdata.videoId == 0) {
+            $('#videoPart').attr("src", "for1.mp4");
+        } else if (expdata.videoId == 1) {
+            $('#videoPart').attr("src", "for2.mp4");
         }
-    }else if (expdata==null||expdata.phone.length==0){
+    } else if (expdata == null || expdata.phone.length == 0) {
         alert("登录后才能完成后续步骤哦");
-        $(location).attr("href","signup.html");
-    }else if (expdata.preTest==false){
+        $(location).attr("href", "signup.html");
+    } else if (expdata.preTest == false) {
         alert("请先完成课前调查");
-        $(location).attr("href","preTest.html");
-    }else if (expdata.postTest){
+        $(location).attr("href", "preTest.html");
+    } else if (expdata.postTest) {
         alert("您已完成该步骤，请完成课后调查");
-        $(location).attr("href","postTest.html");
+        $(location).attr("href", "postTest.html");
     }
 });
+
 function signinClick(exdata) {
     if (exdata != null) {
         var msg = "您已登录，确定要注销该账户吗？";
@@ -50,23 +52,23 @@ function signinClick(exdata) {
 }
 
 $('#user').click(function () {
-    expdata=signinClick(expdata);
-    window.localStorage.setItem("userInfo",JSON.stringify(expdata));
+    expdata = signinClick(expdata);
+    window.localStorage.setItem("userInfo", JSON.stringify(expdata));
 });
 
 
-window.onload = function() {
+window.onload = function () {
     isLRKey = 0;
     var myVideo = document.getElementById("videoPart");
     document.onkeydown = keyDown;
     document.onkeyup = keyUp;
     //document.onmouseup = mousedown;
-    
-    
+
+
     playingtime = myVideo.currentTime;//初始化
     pausetime = myVideo.currentTime;
     currenttime = myVideo.currentTime;
-    
+
     firsttime = myVideo.currentTime;
     lasttime = myVideo.currentTime;
     myVideo.addEventListener("playing", firsttimeupdate);//添加视频播放变化的监听
@@ -77,32 +79,32 @@ window.onload = function() {
 }
 
 function sendpostdata() {//发送post请求和相应的data
-	
-	$.ajax('http://localhost:65535/index/upload', {
-		method:"post",
-		data : {data : localStorage.getItem('action_record')},
-	}
-	);
+
+    $.ajax('http://' + server.ip + ':' + server.port + '/index/upload', {
+            method: "post",
+            data: {data: localStorage.getItem('action_record')},
+        }
+    );
 }
 
 function Actionstroge(id, time, action, sktime) {//存储action和id等数据到localstorage中
     var newaction = {//添加使用的对象
-        id        :  id,
-        cur_Time : time,
-        cur_action  : action,
-		skip_time : sktime
+        id: id,
+        cur_Time: time,
+        cur_action: action,
+        skip_time: sktime
     };
     newaction.id = id;
     newaction.cur_Time = time;
     newaction.cur_action = action;
-	newaction.skip_time = sktime;
+    newaction.skip_time = sktime;
     actionlist.push(newaction);
-    
+
     localStorage.setItem("action_record", JSON.stringify(actionlist));//存储数据到localstorage中，数据类型为json
-    
+
     /*var read = JSON.parse(localStorage.getItem('action_record'));
     console.log(read, read.length);*/
-	
+
 }
 
 
@@ -131,14 +133,14 @@ function keyDown(e) {//左右键按下事件
 
 function keyUp(e) {//左右键松开事件
     var keycode = e.which;
-	var myVideo = document.getElementById("videoPart");
+    var myVideo = document.getElementById("videoPart");
     if (keycode == 37 || keycode == 39) {
         console.log((document.getElementById("videoPart").currentTime - firsttime) * isLRKey);//键盘左右键快进后退大概多少秒
-		if (keycode == 37) {
-			Actionstroge(userid, myVideo.currentTime.toString(), "left_start", String((document.getElementById("videoPart").currentTime - firsttime) * isLRKey));
-		} else {
-			Actionstroge(userid, myVideo.currentTime.toString(), "right_start", String((document.getElementById("videoPart").currentTime - firsttime) * isLRKey));
-		}
+        if (keycode == 37) {
+            Actionstroge(userid, myVideo.currentTime.toString(), "left_start", String((document.getElementById("videoPart").currentTime - firsttime) * isLRKey));
+        } else {
+            Actionstroge(userid, myVideo.currentTime.toString(), "right_start", String((document.getElementById("videoPart").currentTime - firsttime) * isLRKey));
+        }
         isLRKey = 0;
     }
     console.log(isLRKey);
@@ -149,15 +151,15 @@ function checktimeupdate() {//监控视频播放进度
     lasttime = myVideo.currentTime;
 }
 
-function parseTime(time){//秒化分秒
+function parseTime(time) {//秒化分秒
     time = Math.floor(time);
     var _m, _s;
-    _m = Math.floor(time/60);
-    _s = time - _m*60;
-    if(_m<10){
+    _m = Math.floor(time / 60);
+    _s = time - _m * 60;
+    if (_m < 10) {
         _m = '0' + _m;
     }
-    if(_s<10){
+    if (_s < 10) {
         _s = '0' + _s;
     }
     return _m + ':' + _s

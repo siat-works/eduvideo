@@ -1,4 +1,5 @@
 var expdata = JSON.parse(window.localStorage.getItem("userInfo"));
+var server=server_config;
 $(document).ready(function () {
     if (expdata != null) {
         $('#user').text(expdata.phone);
@@ -47,7 +48,7 @@ $('#submit').click(function (e) {
             flag=false;
             $.ajax({
                 type: 'post',
-                url: 'http://localhost:65535/users/preTest',
+                url: 'http://'+server.ip+':'+server.port+'/users/preTest',
                 data,
                 success: function (res) {
                     if (res.status == 0) {

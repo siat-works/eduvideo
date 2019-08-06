@@ -1,4 +1,5 @@
 var expdata = JSON.parse(window.localStorage.getItem("userInfo"));
+var server = server_config;
 answerData = {
     id: expdata == null ? -1 : expdata.id,
     phone: expdata == null ? -1 : expdata.phone,
@@ -18,7 +19,7 @@ answerData = {
 
 $(document).ready(function () {
     // answerData=null;
-    window.localStorage.setItem("answer",JSON.stringify(null));
+    window.localStorage.setItem("answer", JSON.stringify(null));
     if (expdata != null) {
         var user = $('#user').text(expdata.phone);
         console.log(user);
@@ -76,13 +77,13 @@ $('#submit').click(function (e) {
         data = answerData;
         $.ajax({
             type: 'post',
-            url: 'http://localhost:65535/users/postTest',
+            url: 'http://' + server.ip + ':' + server.port + '/users/postTest',
             data,
             success: function (res) {
                 console.log(res.body);
                 if (res.status == 0) {
                     alert("您已完成此次实验，感谢您的参与，再见(￣▽￣)／");
-                    window.localStorage.setItem("userInfo",null);
+                    window.localStorage.setItem("userInfo", null);
                     $(location).attr('href', 'index.html');
                     return;
                 } else if (res.status == 1) {
@@ -97,11 +98,11 @@ function checkAnswer() {
     for (var i = 0; i < 12; i++) {
         checkChoice(i + 1);
     }
-    var teacher_gender=document.getElementsByName('teacher_gender');
-    for (var i=0;i<teacher_gender.length;i++){
-        if (teacher_gender[i].checked){
+    var teacher_gender = document.getElementsByName('teacher_gender');
+    for (var i = 0; i < teacher_gender.length; i++) {
+        if (teacher_gender[i].checked) {
             answerData.answeredNum++;
-            answerData.teacher_gender=teacher_gender[i].value;
+            answerData.teacher_gender = teacher_gender[i].value;
         }
     }
     var test_num = $("#test_num").val();
@@ -111,28 +112,28 @@ function checkAnswer() {
     }
 
 
-    var learned=document.getElementsByName('learned');
-    for (var i=0;i<learned.length;i++){
-        if (learned[i].checked){
+    var learned = document.getElementsByName('learned');
+    for (var i = 0; i < learned.length; i++) {
+        if (learned[i].checked) {
             answerData.answeredNum++;
-            answerData.learned=learned[i].value;
-            if (learned[i].value=='yes'){
-                var grades=document.getElementsByName('grades');
-                for (var i=0;i<grades.length;i++){
-                    if (grades[i].checked){
+            answerData.learned = learned[i].value;
+            if (learned[i].value == 'yes') {
+                var grades = document.getElementsByName('grades');
+                for (var i = 0; i < grades.length; i++) {
+                    if (grades[i].checked) {
                         answerData.answeredNum++;
-                        answerData.grades=grades[i].value;
+                        answerData.grades = grades[i].value;
                     }
                 }
             }
         }
     }
 
-    var gender=document.getElementsByName('gender');
-    for (var i=0;i<gender.length;i++){
-        if (gender[i].checked){
+    var gender = document.getElementsByName('gender');
+    for (var i = 0; i < gender.length; i++) {
+        if (gender[i].checked) {
             answerData.answeredNum++;
-            answerData.gender=gender[i].value;
+            answerData.gender = gender[i].value;
         }
     }
 

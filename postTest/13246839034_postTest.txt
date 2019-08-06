@@ -1,1 +1,1 @@
-{"id":"1","phone":"13246839034","choice[]":["2","5","4","7","6","7","7","6","7","6","5","6"],"teacher_gender":"female","test_num":"321321","learned":"yes","grades":"90-100","gender":"male","age":"12","nation":"asc","address":"asc","major":"asc","level":"asc","answeredNum":"32"}
+{"id":"1","phone":"13246839034","choice[]":["7","7","6","6","5","5","5","5","5","6","6","5"],"teacher_gender":"female","test_num":"9464","learned":"yes","grades":"60","gender":"female","age":"132","nation":"asc","address":"asc","major":"asc","level":"sac","answeredNum":"22"}
