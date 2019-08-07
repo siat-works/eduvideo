@@ -1,7 +1,7 @@
 var server = server_config;
-var expdata=JSON.parse(window.localStorage.getItem("userInfo"));
+var expdata = JSON.parse(window.localStorage.getItem("userInfo"));
 
-function loadTable(){
+function loadTable() {
     $('#table_content').empty();
     $.ajax({
         type: 'post',
@@ -24,43 +24,73 @@ $('#load').click(function () {
     loadTable();
 });
 
-function fillTable(res){
-    var params=res.result;
-    for (var i=0;i<params.length;i++){
-        var userId=params[i].id;
-        var str='<tr id="'+userId+'"><td>'+userId+'</td><td>'+params[i].phone+'</td><td>'+params[i].gender+'</td>';
-        var btn='<td><a rel="nofollow" class="btn nofollow" type="button" style="margin:0 auto;color:wheat;background-color:red; display: block" id="del'+userId+'">删除</a></td>'
-        var tail='</tr>';
-        str+=btn+tail;
+function fillTable(res) {
+    var params = res.result;
+    for (var i = 0; i < params.length; i++) {
+        var userId = params[i].id;
+        var str = '<tr id="' + userId + '"><td>' + userId + '</td><td>' + params[i].phone + '</td><td>' + params[i].gender + '</td>';
+        var btn = '<td><a rel="nofollow" class="btn nofollow" type="button" style="margin:0 auto;color:wheat;background-color:red; display: block" id="del' + userId + '">删除</a></td>'
+        var tail = '</tr>';
+        str += btn + tail;
         $('#table_content').append(str);
-        $('#del'+userId).click(function () {
-            data = {id: userId};
-            console.log(data);
-            $.ajax({
-                type: 'post',
-                url: 'http://' + server.ip + ':' + server.port + '/users/admin/delete',
-                data,
-                success: function (res) {
-                    console.log(res);
-                    if (res.status == 0) {
-                        $('#'+userId).remove();
-                        loadTable();
-                        // window.location.reload();
-                        $('#phone').val('');
-                        return;
-                    }
-                },
-                error: function (err) {
-                    console.log(err);
-                }
-            });
-        });
+        // $('#del'+userId).click(function () {
+        //     console.log("按键 "+userId+" clicked");
+        //     data = {id: userId};
+        //     console.log(data);
+        //     $.ajax({
+        //         type: 'post',
+        //         url: 'http://' + server.ip + ':' + server.port + '/users/admin/delete',
+        //         data,
+        //         success: function (res) {
+        //             console.log(res);
+        //             if (res.status == 0) {
+        //                 $('#'+userId).remove();
+        //                 loadTable();
+        //                 // window.location.reload();
+        //                 $('#phone').val('');
+        //                 return;
+        //             }
+        //         },
+        //         error: function (err) {
+        //             console.log(err);
+        //         }
+        //     });
+        // });
     }
     $('#phone').val('');
     return;
 }
+
+$(document).click(function (e) {
+    var id = $(e.target).attr('id');
+    if (id.startsWith('del')) {
+        console.log(id);
+        var userId = id.replace('del', '');
+        data = {id: userId};
+        console.log(data);
+        $.ajax({
+            type: 'post',
+            url: 'http://' + server.ip + ':' + server.port + '/users/admin/delete',
+            data,
+            success: function (res) {
+                console.log(res);
+                if (res.status == 0) {
+                    $('#' + userId).remove();
+                    loadTable();
+                    // window.location.reload();
+                    $('#phone').val('');
+                    return;
+                }
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+});
+
 $('#search').click(function () {
-    var phone=$('#phone').val();
+    var phone = $('#phone').val();
     data = {phone: phone};
     $.ajax({
         type: 'post',
@@ -101,6 +131,7 @@ $('#submit').click(function (e) {
     if (userphone.length != 11) {
         alert("手机号有误，请重新输入");
         $('#phone').val('');
+        return;
     }
     data = {phone: userphone};
     $.ajax({
