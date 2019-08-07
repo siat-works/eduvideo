@@ -24,7 +24,8 @@ $(document).ready(function () {
     if (expdata != null) {
         var user = $('#user').text(expdata.phone);
         console.log(user);
-    } else if (expdata == null || expdata.phone.length == 0) {
+    }
+    if (expdata == null || expdata.phone.length == 0) {
         alert("登录后才能完成后续步骤哦");
         $(location).attr("href", "signup.html");
     } else if (expdata.preTest == false) {

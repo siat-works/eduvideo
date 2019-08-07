@@ -92,6 +92,7 @@ router.post('/admin', function (req, res) {
                     msg: '手机号重复'
                 })
                 res.end();
+				return;
             } else if (result.length == 0) {
                 connection.query(query.user.insert, params.phone, function (err, result) {
                     if (err)
@@ -102,6 +103,7 @@ router.post('/admin', function (req, res) {
                             msg: '添加成功',
                         })
                         res.end();
+						return;
                     }
                 })
             }
