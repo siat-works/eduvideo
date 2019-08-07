@@ -1,4 +1,88 @@
 var server = server_config;
+var expdata=JSON.parse(window.localStorage.getItem("userInfo"));
+
+function loadTable(){
+    $('#table_content').empty();
+    $.ajax({
+        type: 'post',
+        url: 'http://' + server.ip + ':' + server.port + '/users/admin/table',
+        success: function (res) {
+            console.log(res);
+            if (res.status == 0) {
+                fillTable(res);
+            } else if (res.status == 5) {
+                alert("此手机号已添加，请检查后重新输入");
+            }
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
+}
+
+$('#load').click(function () {
+    loadTable();
+});
+
+function fillTable(res){
+    var params=res.result;
+    for (var i=0;i<params.length;i++){
+        var userId=params[i].id;
+        var str='<tr id="'+userId+'"><td>'+userId+'</td><td>'+params[i].phone+'</td><td>'+params[i].gender+'</td>';
+        var btn='<td><a rel="nofollow" class="btn nofollow" type="button" style="margin:0 auto;color:wheat;background-color:red; display: block" id="del'+userId+'">删除</a></td>'
+        var tail='</tr>';
+        str+=btn+tail;
+        $('#table_content').append(str);
+        $('#del'+userId).click(function () {
+            data = {id: userId};
+            console.log(data);
+            $.ajax({
+                type: 'post',
+                url: 'http://' + server.ip + ':' + server.port + '/users/admin/delete',
+                data,
+                success: function (res) {
+                    console.log(res);
+                    if (res.status == 0) {
+                        $('#'+userId).remove();
+                        loadTable();
+                        // window.location.reload();
+                        $('#phone').val('');
+                        return;
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        });
+    }
+    $('#phone').val('');
+    return;
+}
+$('#search').click(function () {
+    var phone=$('#phone').val();
+    data = {phone: phone};
+    $.ajax({
+        type: 'post',
+        url: 'http://' + server.ip + ':' + server.port + '/users/admin/search',
+        data,
+        success: function (res) {
+            console.log(res);
+            if (res.status == 0) {
+                $('#table_content').empty();
+                fillTable(res);
+                // window.location.reload();
+                $('#phone').val('');
+                return;
+            } else if (res.status == 5) {
+                alert("无此记录，请查证后重新输入");
+            }
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    })
+});
 
 $('#submit').click(function (e) {
     // console.log($('#phone').val());
@@ -26,6 +110,7 @@ $('#submit').click(function (e) {
         success: function (res) {
             console.log(res);
             if (res.status == 0) {
+                loadTable();
                 $('#phone').val('');
                 return;
             } else if (res.status == 5) {

@@ -98,14 +98,79 @@ router.post('/admin', function (req, res) {
                     if (err)
                         throw err;
                     else {
+                        var response=result[0];
+                        console.log(response);
                         res.send({
                             status: 0,
                             msg: '添加成功',
-                        })
+                        });
                         res.end();
 						return;
                     }
                 })
+            }
+        }
+    })
+});
+
+router.post('/admin/table',function (req,res) {
+    connection.query(query.user.query,function (err,result) {
+        if (err){
+            throw err;
+            return;
+        }else {
+            res.send({
+                status: 0,
+                msg: '查询完成',
+                result: result
+            });
+            res.end();
+            return;
+        }
+    })
+});
+
+router.post('/admin/delete',function (req,res) {
+    var params=req.body;
+    console.log(params);
+    connection.query(query.user.delete,params.id,function (err,result) {
+        if (err){
+            throw err;
+            return;
+        }else {
+            res.send({
+               status: 0,
+               msg: "删除成功"
+            });
+            res.end();
+            return;
+        }
+    })
+});
+
+router.post('/admin/search',function (req,res) {
+    var params=req.body;
+    connection.query(query.user.selectByPhone,params.phone,function (err,result) {
+        if (err){
+            throw err;
+            return;
+        }else {
+            if (result.length>0) {
+                res.send({
+                    status: 0,
+                    msg: '查询完成',
+                    result: result
+                });
+                res.end();
+                return;
+            }else {
+                res.send({
+                    status: 5,
+                    msg: '未查询到该记录',
+                    result:result
+                });
+                res.end();
+                return;
             }
         }
     })

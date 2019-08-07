@@ -4,7 +4,7 @@ var user_query={
     delete:'delete from user where id = ?',
     selectByPhone:'select * from user where phone = ?',
     selectById: 'select * from user where id = ?',
-    selectbyGender: 'select * from user where gender = ?',
+    query: 'select * from user',
     selectByVideoId: 'select * from user where videoId = ?',
     update: 'update user set gender = ? where id = ?',
     updateSeqVideo: 'update user set seq = ? , videoId = ? where id = ?',

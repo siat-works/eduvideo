@@ -1,6 +1,6 @@
 var server_config = {
     ip: 'localhost',
-    port: '65535'
+    port: '9090'
 };
 
 
