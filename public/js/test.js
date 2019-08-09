@@ -5,7 +5,7 @@ answerData = {
     text: [],
     code: '',
     score: 0,
-    video: expdata.videoId,
+    video: expdata==null?-1:expdata.videoId,
     phone: expdata == null ? -1 : expdata.phone,
     answeredNum: 0
 };
@@ -38,7 +38,7 @@ $(document).ready(function () {
             text: [],
             code: [],
             score: 0,
-            video: expdata.videoId,
+            video: expdata==null?-1:expdata.videoId,
             phone: expdata == null ? -1 : expdata.phone,
             answeredNum: 0
         }
@@ -53,7 +53,7 @@ $(document).ready(function () {
             text: [],
             code: [],
             score: 0,
-            video: expdata.videoId,
+            video: expdata==null?-1:expdata.videoId,
             phone: expdata == null ? -1 : expdata.phone,
             answeredNum: 0
         }

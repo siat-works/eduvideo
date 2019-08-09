@@ -45,7 +45,7 @@ router.post('/login', function (req, res) {
                                     var videoId = maxSeq % 2;
                                     connection.query(query.user.updateSeqVideo, [maxSeq, videoId, response.id], function (err, result) {
                                         if (err) {
-                                            throw err;
+                                            // throw err;
                                         } else {
                                             res.send({
                                                 status: 0,
@@ -66,8 +66,8 @@ router.post('/login', function (req, res) {
                             id: response.id,
                             videoId: response.videoId
                         });
+                        res.end();
                     }
-                    res.end();
                 } else {
                     res.send({
                         status: 2,
@@ -92,7 +92,6 @@ router.post('/admin', function (req, res) {
                     msg: '手机号重复'
                 })
                 res.end();
-				return;
             } else if (result.length == 0) {
                 connection.query(query.user.insert, params.phone, function (err, result) {
                     if (err)
@@ -105,7 +104,6 @@ router.post('/admin', function (req, res) {
                             msg: '添加成功',
                         });
                         res.end();
-						return;
                     }
                 })
             }
@@ -117,7 +115,6 @@ router.post('/admin/table',function (req,res) {
     connection.query(query.user.query,function (err,result) {
         if (err){
             throw err;
-            return;
         }else {
             res.send({
                 status: 0,
@@ -125,7 +122,6 @@ router.post('/admin/table',function (req,res) {
                 result: result
             });
             res.end();
-            return;
         }
     })
 });
@@ -136,14 +132,12 @@ router.post('/admin/delete',function (req,res) {
     connection.query(query.user.delete,params.id,function (err,result) {
         if (err){
             throw err;
-            return;
         }else {
             res.send({
                status: 0,
                msg: "删除成功"
             });
             res.end();
-            return;
         }
     })
 });
@@ -153,7 +147,6 @@ router.post('/admin/search',function (req,res) {
     connection.query(query.user.selectByPhone,params.phone,function (err,result) {
         if (err){
             throw err;
-            return;
         }else {
             if (result.length>0) {
                 res.send({
@@ -162,7 +155,6 @@ router.post('/admin/search',function (req,res) {
                     result: result
                 });
                 res.end();
-                return;
             }else {
                 res.send({
                     status: 5,
@@ -170,7 +162,6 @@ router.post('/admin/search',function (req,res) {
                     result:result
                 });
                 res.end();
-                return;
             }
         }
     })
@@ -181,7 +172,6 @@ router.post('/preTest', function (req, res) {
     connection.query(query.user.update, [params.gender, params.id], function (err, result) {
         if (err) {
             throw err;
-            return;
         } else {
             console.log("修改成功");
             /**
@@ -190,13 +180,11 @@ router.post('/preTest', function (req, res) {
             connection.query(query.questionnarre.query, params.id, function (err, result) {
                 if (err) {
                     throw err;
-                    return;
                 } else {
                     if (result.length == 0) {
                         connection.query(query.questionnarre.insert, params.id, function (err, result) {
                             if (err) {
                                 throw err;
-                                return;
                             } else {
                                 console.log("插入questionnaire完成");
                             }

@@ -1,6 +1,10 @@
 var server = server_config;
 var expdata = JSON.parse(window.localStorage.getItem("userInfo"));
 
+$(document).ready(function () {
+    loadTable();
+});
+
 function loadTable() {
     $('#table_content').empty();
     $.ajax({

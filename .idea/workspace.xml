@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="047c8ce2-8bd4-422f-b857-0b4f6ef36e40" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/admin.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/postTest.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/postTest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/users.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -87,6 +89,9 @@
       <workItem from="1565075163756" duration="7260000" />
       <workItem from="1565146332521" duration="1013000" />
       <workItem from="1565160055470" duration="13692000" />
+      <workItem from="1565176562372" duration="660000" />
+      <workItem from="1565235131727" duration="1681000" />
+      <workItem from="1565315757466" duration="2570000" />
     </task>
     <task id="LOCAL-00001" summary="提高复用性">
       <created>1565078217598</created>
@@ -116,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565170439224</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="bug修复">
+      <created>1565176622640</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1565176622641</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,9 +167,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="提高复用性" />
     <MESSAGE value="优化数据处理和bug修复" />
-    <MESSAGE value="bug修复" />
     <MESSAGE value="admin功能全部完成+bug修复" />
-    <option name="LAST_COMMIT_MESSAGE" value="admin功能全部完成+bug修复" />
+    <MESSAGE value="bug修复" />
+    <option name="LAST_COMMIT_MESSAGE" value="bug修复" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

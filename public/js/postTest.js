@@ -14,7 +14,7 @@ answerData = {
     address: '',
     major: '',
     level: '',
-    video: expdata.videoId,
+    video: expdata==null?-1:expdata.videoId,
     answeredNum: 0
 };
 
