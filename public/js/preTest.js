@@ -44,7 +44,7 @@ $('#submit').click(function (e) {
     for (var i = 0; i < radio.length; i++) {
         if (radio[i].checked) {
             gender = radio[i].value;
-            data = {id: expdata.id, name: name, gender: gender,phone: expdata.phone};
+            data = {id: expdata.id, name: name, gender: gender,phone: expdata.phone,videoid:expdata.videoId};
             flag=false;
             $.ajax({
                 type: 'post',

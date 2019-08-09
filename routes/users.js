@@ -219,7 +219,7 @@ router.post('/preTest', function (req, res) {
 });
 
 router.post('/test', function (req, res) {
-    console.log(res.body);
+    // console.log(res.body);
     var params = req.body;
     var fs = require("fs");//申请文件处理
     var rawdata = JSON.stringify(params);

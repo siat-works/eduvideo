@@ -156,14 +156,24 @@ $('#submit').click(function (e) {
             url: 'http://' + server.ip + ':' + server.port + '/users/test',
             data,
             success: function (res) {
-                console.log(res.body);
                 if (res.status == 0) {
                     alert("提交成功");
                     expdata.test=true;
                     window.localStorage.setItem("userInfo",JSON.stringify(expdata));
-                    $.ajax('http://' + server.ip + ':' + server.port + '/upload', {
-                            method: "post",
-                            data: {data: localStorage.getItem('action_record')},
+                    console.log(window.localStorage.getItem('action_record'));
+                    video_data=window.localStorage.getItem('action_record');
+                    data={videoLog: video_data};
+                    console.log(video_data);
+                    $.ajax({
+                        type: 'post',
+                        url: 'http://' + server.ip + ':' + server.port + '/upload',
+                        data,
+                        success: function (res) {
+                            console.log(res.body);
+                            if (res.status==0){
+                                console.log(res.msg);
+                            }
+                        }
                         }
                     );
                     $(location).attr('href', 'postTest.html');
@@ -189,6 +199,12 @@ function checkAnswer() {
     if (code.length > 0) {
         answerData.answeredNum++;
         answerData.code = code;
+    }
+    right_answer=['a','b','a','a','c']
+    for (var i=0;i<answerData.choice.length;i++){
+        if (right_answer[i]==answerData.choice[i]){
+            answerData.score+=4;
+        }
     }
 }
 

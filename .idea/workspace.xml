@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="047c8ce2-8bd4-422f-b857-0b4f6ef36e40" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/process_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/edu_video.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/edu_video.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/admin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/postTest.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/postTest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preTest/13246839034_preTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/preTest/13246839034_preTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/preTest.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/preTest.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/13246839034_test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/13246839034_test.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,13 +19,25 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/edu_video$process_data.coverage" NAME="process_data Coverage Results" MODIFIED="1565335736804" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="Python Script" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>post</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>test</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -28,13 +45,13 @@
         <option value="bolixinyu &lt;2410781627@qq.com&gt;" />
       </list>
     </option>
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="ProjectId" id="1OdPfXZ3hAUQD2Cqf2q7ej3Qx3O" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -47,7 +64,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -64,6 +81,40 @@
           <option name="name" value="StatusDashboardGroupingRule" />
         </RuleState>
       </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="process_data" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="edu_video" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/process_data.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <treeState>
+          <expand />
+          <select />
+        </treeState>
+      </serviceView>
     </option>
   </component>
   <component name="SvnConfiguration">
@@ -92,6 +143,8 @@
       <workItem from="1565176562372" duration="660000" />
       <workItem from="1565235131727" duration="1681000" />
       <workItem from="1565315757466" duration="2570000" />
+      <workItem from="1565318600334" duration="46000" />
+      <workItem from="1565318723978" duration="8228000" />
     </task>
     <task id="LOCAL-00001" summary="提高复用性">
       <created>1565078217598</created>
@@ -163,13 +216,28 @@
         </entry>
       </map>
     </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="提高复用性" />
     <MESSAGE value="优化数据处理和bug修复" />
     <MESSAGE value="admin功能全部完成+bug修复" />
     <MESSAGE value="bug修复" />
-    <option name="LAST_COMMIT_MESSAGE" value="bug修复" />
+    <MESSAGE value="admin bug修复" />
+    <option name="LAST_COMMIT_MESSAGE" value="admin bug修复" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
