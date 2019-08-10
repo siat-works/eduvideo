@@ -3,8 +3,29 @@ const mysql = require('mysql');
 var db = require('../config/config');
 var query = require('../config/sql_query');
 
-var connection = mysql.createConnection(db.mysql);
-connection.connect();
+var connection;
+
+function handleDisconnect() {
+    connection = mysql.createConnection(db.mysql);
+    connection.connect(function (err) {              // The server is either down
+        if (err) {                                     // or restarting (takes a while sometimes).
+            console.log('error when connecting to db:', err);
+            setTimeout(handleDisconnect, 2000); // We introduce a delay before attempting to reconnect,
+        }                                     // to avoid a hot loop, and to allow our node script to
+    });                                     // process asynchronous requests in the meantime.
+                                            // If you're also serving http, display a 503 error.
+    connection.on('error', function (err) {
+        console.log('db error', err);
+        if (err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
+            handleDisconnect();                         // lost due to either server restart, or a
+        } else {                                      // connnection idle timeout (the wait_timeout
+            throw err;                                  // server variable configures this)
+        }
+    });
+}
+
+handleDisconnect();
+
 var router = express.Router();
 
 /* GET users listing. */
@@ -59,7 +80,7 @@ router.post('/login', function (req, res) {
                                 }
                             }
                         })
-                    }else {
+                    } else {
                         res.send({
                             status: 0,
                             msg: '登陆成功',
@@ -97,7 +118,7 @@ router.post('/admin', function (req, res) {
                     if (err)
                         throw err;
                     else {
-                        var response=result[0];
+                        var response = result[0];
                         console.log(response);
                         res.send({
                             status: 0,
@@ -111,11 +132,11 @@ router.post('/admin', function (req, res) {
     })
 });
 
-router.post('/admin/table',function (req,res) {
-    connection.query(query.user.query,function (err,result) {
-        if (err){
+router.post('/admin/table', function (req, res) {
+    connection.query(query.user.query, function (err, result) {
+        if (err) {
             throw err;
-        }else {
+        } else {
             res.send({
                 status: 0,
                 msg: '查询完成',
@@ -126,40 +147,40 @@ router.post('/admin/table',function (req,res) {
     })
 });
 
-router.post('/admin/delete',function (req,res) {
-    var params=req.body;
+router.post('/admin/delete', function (req, res) {
+    var params = req.body;
     console.log(params);
-    connection.query(query.user.delete,params.id,function (err,result) {
-        if (err){
+    connection.query(query.user.delete, params.id, function (err, result) {
+        if (err) {
             throw err;
-        }else {
+        } else {
             res.send({
-               status: 0,
-               msg: "删除成功"
+                status: 0,
+                msg: "删除成功"
             });
             res.end();
         }
     })
 });
 
-router.post('/admin/search',function (req,res) {
-    var params=req.body;
-    connection.query(query.user.selectByPhone,params.phone,function (err,result) {
-        if (err){
+router.post('/admin/search', function (req, res) {
+    var params = req.body;
+    connection.query(query.user.selectByPhone, params.phone, function (err, result) {
+        if (err) {
             throw err;
-        }else {
-            if (result.length>0) {
+        } else {
+            if (result.length > 0) {
                 res.send({
                     status: 0,
                     msg: '查询完成',
                     result: result
                 });
                 res.end();
-            }else {
+            } else {
                 res.send({
                     status: 5,
                     msg: '未查询到该记录',
-                    result:result
+                    result: result
                 });
                 res.end();
             }
@@ -194,7 +215,7 @@ router.post('/preTest', function (req, res) {
             });
             var fs = require("fs");//申请文件处理
             var rawdata = JSON.stringify(params);
-            var filepath = "preTest/"+params.phone+"_preTest.txt";//文件路径
+            var filepath = "preTest/" + params.phone + "_preTest.txt";//文件路径
             fs.writeFile(filepath, rawdata, function (err) {
                 if (err) {
                     throw err;
@@ -223,7 +244,7 @@ router.post('/test', function (req, res) {
     var params = req.body;
     var fs = require("fs");//申请文件处理
     var rawdata = JSON.stringify(params);
-    var filepath = "test/"+params.phone+"_test.txt";//文件路径
+    var filepath = "test/" + params.phone + "_test.txt";//文件路径
     fs.writeFile(filepath, rawdata, function (err) {//写入内容到txt文件
         if (err) {
             console.log(err);
@@ -251,7 +272,7 @@ router.post('/postTest', function (req, res) {
     var params = req.body;
     var fs = require("fs");//申请文件处理
     var rawdata = JSON.stringify(params);
-    var filepath = "postTest/"+params.phone+"_postTest.txt";//文件路径
+    var filepath = "postTest/" + params.phone + "_postTest.txt";//文件路径
     fs.writeFile(filepath, rawdata, function (err) {//写入内容到txt文件
         if (err) {
             console.log(err);
