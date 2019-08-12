@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="047c8ce2-8bd4-422f-b857-0b4f6ef36e40" name="Default Changelist" comment="">
+    <list default="true" id="047c8ce2-8bd4-422f-b857-0b4f6ef36e40" name="Default Changelist" comment="全新改版">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/postTest/13246839034_postTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/postTest/13246839034_postTest.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/preTest/13246839034_preTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/preTest/13246839034_preTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/postTest.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/postTest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/preTest.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/preTest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/postTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/postTest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/preTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/preTest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/test.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/video.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/video.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/process_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/process_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/video.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/video.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/13246839034_test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/13246839034_test.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,7 +16,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/edu_video$process_data.coverage" NAME="process_data Coverage Results" MODIFIED="1565335736804" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/edu_video$process_data.coverage" NAME="process_data Coverage Results" MODIFIED="1565604769435" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -40,13 +33,19 @@
         <option value="bolixinyu &lt;2410781627@qq.com&gt;" />
       </list>
     </option>
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectId" id="1OdPfXZ3hAUQD2Cqf2q7ej3Qx3O" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -142,7 +141,8 @@
       <workItem from="1565318723978" duration="8228000" />
       <workItem from="1565452680211" duration="843000" />
       <workItem from="1565493461746" duration="3889000" />
-      <workItem from="1565594099325" duration="4411000" />
+      <workItem from="1565594099325" duration="7921000" />
+      <workItem from="1565602106146" duration="3174000" />
     </task>
     <task id="LOCAL-00001" summary="提高复用性">
       <created>1565078217598</created>
@@ -186,7 +186,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565452302124</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="全新改版">
+      <created>1565598701911</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1565598701911</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,7 +250,8 @@
     <MESSAGE value="bug修复" />
     <MESSAGE value="admin bug修复" />
     <MESSAGE value="解决数据库超时断开连接问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="解决数据库超时断开连接问题" />
+    <MESSAGE value="全新改版" />
+    <option name="LAST_COMMIT_MESSAGE" value="全新改版" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

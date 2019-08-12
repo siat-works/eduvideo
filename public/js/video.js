@@ -101,7 +101,7 @@ window.onload = function () {
     myVideo.addEventListener("timeupdate", checktimeupdate);//添加视频进度监听
 }
 
-function get_date_time(fmt) {
+function get_date_time(fmt) {//根据格式获取当前时间
     var now = new Date();
     return now.format(fmt);
 }
@@ -121,8 +121,8 @@ function Actionstroge(id, datetime, time, action, sktime) {//存储action和id�
     newaction.skip_time = sktime;
     actionlist.push(newaction);
 
-    localStorage.setItem("action_record", get_date_time("yyyy-MM-dd"));//存储数据到localstorage中，数据类型为json
-
+    localStorage.setItem("date_time", get_date_time("yyyy-MM-dd"));//存储日期数据到localstorage中
+    localStorage.setItem("action_record", JSON.stringify(actionlist));//存储数据到localstorage中，数据类型为json
     /*var read = JSON.parse(localStorage.getItem('action_record'));
     console.log(read, read.length);*/
 
@@ -169,7 +169,7 @@ function keyUp(e) {//左右键松开事件
 function checktimeupdate() {//监控视频播放进度
     var myVideo = document.getElementById("videoPart");
     lasttime = myVideo.currentTime;
-    console.log(get_date_time("hh:mm:ss"));
+    // console.log(get_date_time("hh:mm:ss"));
 }
 
 function parseTime(time) {//秒化分秒
