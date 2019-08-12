@@ -53,6 +53,31 @@ $('#user').click(function () {
 });
 
 
+Date.prototype.format = function(fmt){//将Date()获取的时间转化为正常时间
+  var o = {
+    "M+" : this.getMonth()+1,                 //月份
+    "d+" : this.getDate(),                    //日
+    "h+" : this.getHours(),                   //小时
+    "m+" : this.getMinutes(),                 //分
+    "s+" : this.getSeconds(),                 //秒
+    "q+" : Math.floor((this.getMonth()+3)/3), //季度
+    "S"  : this.getMilliseconds()             //毫秒
+  };
+
+  if(/(y+)/.test(fmt)){
+    fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+  }
+        
+  for(var k in o){
+    if(new RegExp("("+ k +")").test(fmt)){
+      fmt = fmt.replace(
+        RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));  
+    }       
+  }
+
+  return fmt;
+}
+
 window.onload = function () {
     isLRKey = 0;
     var myVideo = document.getElementById("videoPart");
@@ -67,6 +92,8 @@ window.onload = function () {
 
     firsttime = myVideo.currentTime;
     lasttime = myVideo.currentTime;
+    
+    localStorage.setItem("date_ymd", JSON.stringify(actionlist))
     myVideo.addEventListener("playing", firsttimeupdate);//添加视频播放变化的监听
     //myVideo.addEventListener("paused", lasttimeupdate);
     myVideo.addEventListener("play", checkplayed);//添加视频播放监听
@@ -74,26 +101,32 @@ window.onload = function () {
     myVideo.addEventListener("timeupdate", checktimeupdate);//添加视频进度监听
 }
 
-function Actionstroge(id, time, action, sktime) {//存储action和id等数据到localstorage中
+function get_date_time(fmt) {
+    var now = new Date();
+    return now.format(fmt);
+}
+
+function Actionstroge(id, datetime, time, action, sktime) {//存储action和id等数据到localstorage中
     var newaction = {//添加使用的对象
         id: id,
+        date_time: datetime,
         cur_Time: time,
         cur_action: action,
         skip_time: sktime
     };
     newaction.id = id;
     newaction.cur_Time = time;
+    newaction.date_time = datetime;
     newaction.cur_action = action;
     newaction.skip_time = sktime;
     actionlist.push(newaction);
 
-    localStorage.setItem("action_record", JSON.stringify(actionlist));//存储数据到localstorage中，数据类型为json
+    localStorage.setItem("action_record", get_date_time("yyyy-MM-dd"));//存储数据到localstorage中，数据类型为json
 
     /*var read = JSON.parse(localStorage.getItem('action_record'));
     console.log(read, read.length);*/
 
 }
-
 
 function keyDown(e) {//左右键按下事件
     var myVideo = document.getElementById("videoPart");
@@ -124,9 +157,9 @@ function keyUp(e) {//左右键松开事件
     if (keycode == 37 || keycode == 39) {
         console.log((document.getElementById("videoPart").currentTime - firsttime) * isLRKey);//键盘左右键快进后退大概多少秒
         if (keycode == 37) {
-            Actionstroge(userid, myVideo.currentTime.toString(), "left_start", String(Math.abs(document.getElementById("videoPart").currentTime - firsttime) * isLRKey));
+            Actionstroge(userid, get_date_time("hh:mm:ss"), myVideo.currentTime.toString(), "left_start", String(Math.abs(document.getElementById("videoPart").currentTime - firsttime) * isLRKey));
         } else {
-            Actionstroge(userid, myVideo.currentTime.toString(), "right_start", String(Math.abs(document.getElementById("videoPart").currentTime - firsttime) * isLRKey));
+            Actionstroge(userid, get_date_time("hh:mm:ss"), myVideo.currentTime.toString(), "right_start", String(Math.abs(document.getElementById("videoPart").currentTime - firsttime) * isLRKey));
         }
         isLRKey = 0;
     }
@@ -136,6 +169,7 @@ function keyUp(e) {//左右键松开事件
 function checktimeupdate() {//监控视频播放进度
     var myVideo = document.getElementById("videoPart");
     lasttime = myVideo.currentTime;
+    console.log(get_date_time("hh:mm:ss"));
 }
 
 function parseTime(time) {//秒化分秒
@@ -161,7 +195,7 @@ function checkplayed() {//监控是否暂停或者播放
         state = "play";
     }
     console.log(state);
-    Actionstroge(userid, myVideo.currentTime.toString(), state, "null");
+    Actionstroge(userid, get_date_time("hh:mm:ss"), myVideo.currentTime.toString(), state, "null");
 }
 
 function firsttimeupdate() {//记录鼠标首次快进或者后退前的时间
@@ -170,10 +204,10 @@ function firsttimeupdate() {//记录鼠标首次快进或者后退前的时间
     var changetime = firsttime - myVideo.currentTime;
     if (changetime > 0) {
         console.log("left");
-        Actionstroge(userid, myVideo.currentTime.toString(), "left", String(Math.abs(changetime)));
+        Actionstroge(userid, get_date_time("hh:mm:ss"), myVideo.currentTime.toString(), "left", String(Math.abs(changetime)));
     } else {
         console.log("right");
-        Actionstroge(userid, myVideo.currentTime.toString(), "right", String(Math.abs(changetime)));
+        Actionstroge(userid, get_date_time("hh:mm:ss"), myVideo.currentTime.toString(), "right", String(Math.abs(changetime)));
     }
     firsttime = myVideo.currentTime;
 }
