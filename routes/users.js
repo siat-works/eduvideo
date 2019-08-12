@@ -26,6 +26,15 @@ function handleDisconnect() {
 
 handleDisconnect();
 
+setInterval(function () {
+    connection.query(query.user.query, function (err, result) {
+        if (err)
+            throw err;
+        // else
+        // console.log(result[0]);
+    });
+}, 10000);
+
 var router = express.Router();
 
 /* GET users listing. */
@@ -111,7 +120,7 @@ router.post('/admin', function (req, res) {
                 res.send({
                     status: 5,
                     msg: '手机号重复'
-                })
+                });
                 res.end();
             } else if (result.length == 0) {
                 connection.query(query.user.insert, params.phone, function (err, result) {
@@ -190,6 +199,53 @@ router.post('/admin/search', function (req, res) {
 
 router.post('/preTest', function (req, res) {
     var params = req.body;
+    console.log(params);
+    // connection.query(query.user.update, [params.gender, params.id], function (err, result) {
+    //     if (err) {
+    //         throw err;
+    //     } else {
+    //         console.log("修改成功");
+    //         /**
+    //          * 插入相关项到数据库
+    //          */
+    //         connection.query(query.questionnarre.query, params.id, function (err, result) {
+    //             if (err) {
+    //                 throw err;
+    //             } else {
+    //                 if (result.length == 0) {
+    //                     connection.query(query.questionnarre.insert, params.id, function (err, result) {
+    //                         if (err) {
+    //                             throw err;
+    //                         } else {
+    //                             console.log("插入questionnaire完成");
+    //                         }
+    //                     })
+    //                 }
+    //             }
+    //         });
+    //         var fs = require("fs");//申请文件处理
+    //         var rawdata = JSON.stringify(params);
+    //         var filepath = "preTest/" + params.phone + "_preTest.txt";//文件路径
+    //         fs.writeFile(filepath, rawdata, function (err) {
+    //             if (err) {
+    //                 throw err;
+    //             } else {
+    //                 connection.query(query.questionnarre.updatePreTest, [filepath, params.id], function (err, result) {
+    //                     if (err) {
+    //                         throw err;
+    //                     } else {
+    //                         console.log('success');
+    //                         res.send({
+    //                             status: 0,
+    //                             msg: 'test 上传成功',
+    //                         });
+    //                         res.end();
+    //                     }
+    //                 });
+    //             }
+    //         })
+    //     }
+    // });
     connection.query(query.user.update, [params.gender, params.id], function (err, result) {
         if (err) {
             throw err;
@@ -236,7 +292,6 @@ router.post('/preTest', function (req, res) {
             })
         }
     });
-
 });
 
 router.post('/test', function (req, res) {
@@ -270,6 +325,13 @@ router.post('/test', function (req, res) {
 router.post('/postTest', function (req, res) {
     console.log(res.body);
     var params = req.body;
+    connection.query(query.user.update, [params.gender, params.id], function (err, result) {
+        if (err) {
+            throw err;
+        } else {
+            console.log("修改成功");
+        }
+    });
     var fs = require("fs");//申请文件处理
     var rawdata = JSON.stringify(params);
     var filepath = "postTest/" + params.phone + "_postTest.txt";//文件路径

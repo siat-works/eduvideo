@@ -4,14 +4,8 @@ answerData = {
     id: expdata == null ? -1 : expdata.id,
     phone: expdata == null ? -1 : expdata.phone,
     choice: [],
-    teacher_gender: '',
-    test_num: '',
-    learned: '',
-    grades: '',
     gender: '',
     age: '',
-    nation: '',
-    address: '',
     major: '',
     level: '',
     video: expdata==null?-1:expdata.videoId,
@@ -73,7 +67,7 @@ $('#submit').click(function (e) {
     console.log("提交点击")
     //选择题答案
     checkAnswer();
-    if (answerData == null || answerData.answeredNum < 21) {
+    if (answerData == null || answerData.answeredNum < 13) {
         alert("请答完所有题目在提交")
     } else {
         data = answerData;
@@ -97,40 +91,9 @@ $('#submit').click(function (e) {
 });
 
 function checkAnswer() {
-    for (var i = 0; i < 12; i++) {
+    for (var i = 0; i < 9; i++) {
         checkChoice(i + 1);
     }
-    var teacher_gender = document.getElementsByName('teacher_gender');
-    for (var i = 0; i < teacher_gender.length; i++) {
-        if (teacher_gender[i].checked) {
-            answerData.answeredNum++;
-            answerData.teacher_gender = teacher_gender[i].value;
-        }
-    }
-    var test_num = $("#test_num").val();
-    if (test_num.length > 0) {
-        answerData.answeredNum++;
-        answerData.test_num = test_num;
-    }
-
-
-    var learned = document.getElementsByName('learned');
-    for (var i = 0; i < learned.length; i++) {
-        if (learned[i].checked) {
-            answerData.answeredNum++;
-            answerData.learned = learned[i].value;
-            if (learned[i].value == 'yes') {
-                var grades = document.getElementsByName('grades');
-                for (var i = 0; i < grades.length; i++) {
-                    if (grades[i].checked) {
-                        answerData.answeredNum++;
-                        answerData.grades = grades[i].value;
-                    }
-                }
-            }
-        }
-    }
-
     var gender = document.getElementsByName('gender');
     for (var i = 0; i < gender.length; i++) {
         if (gender[i].checked) {
@@ -144,30 +107,20 @@ function checkAnswer() {
         answerData.answeredNum++;
         answerData.age = age;
     }
-
-    var nation = $("#nation").val();
-    if (nation.length > 0) {
-        answerData.answeredNum++;
-        answerData.nation = nation;
-    }
-
-    var address = $("#address").val();
-    if (address.length > 0) {
-        answerData.answeredNum++;
-        answerData.address = address;
-    }
-
     var major = $("#major").val();
     if (major.length > 0) {
         answerData.answeredNum++;
         answerData.major = major;
     }
 
-    var level = $("#level").val();
-    if (level.length > 0) {
-        answerData.answeredNum++;
-        answerData.level = level;
+    var level = document.getElementsByName('level');
+    for (var i = 0; i < level.length; i++) {
+        if (level[i].checked) {
+            answerData.answeredNum++;
+            answerData.level = level[i].value;
+        }
     }
+    console.log(answerData);
 }
 
 /**

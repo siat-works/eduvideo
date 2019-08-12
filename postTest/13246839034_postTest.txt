@@ -1,1 +1,1 @@
-{"id":"1","phone":"13246839034","choice[]":["7","6","6","7","6","6","7","6","7","6","6","7"],"teacher_gender":"female","test_num":"132","learned":"yes","grades":"70-79","gender":"female","age":"12","nation":"asc","address":"ca","major":"ac","level":"assc","video":"1","answeredNum":"22"}
+{"id":"1","phone":"13246839034","choice[]":["7","7","7","6","7","6","7","male","3"],"gender":"female","age":"12","major":"asd","level":"3","video":"1","answeredNum":"17"}

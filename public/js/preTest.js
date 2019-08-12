@@ -1,5 +1,12 @@
 var expdata = JSON.parse(window.localStorage.getItem("userInfo"));
 var server=server_config;
+answerData={
+    id: expdata == null ? -1 : expdata.id,
+    phone: expdata == null ? -1 : expdata.phone,
+    choice:[],
+    video: expdata==null?-1:expdata.videoId,
+    answeredNum:0,
+}
 $(document).ready(function () {
     if (expdata != null) {
         $('#user').text(expdata.phone);
@@ -38,39 +45,50 @@ $('#user').click(function () {
 });
 
 $('#submit').click(function (e) {
-    var name = $('#name').val();
-    var gender = '';
-    var radio = document.getElementsByName('gender');
+    for (var i=0;i<5;i++) {
+        checkChoice(i+1)
+    }
+    if (answerData == null || answerData.answeredNum < 5) {
+        alert("请答完所有题目在提交")
+    } else {
+        data = answerData;
+        $.ajax({
+            type: 'post',
+            url: 'http://' + server.ip + ':' + server.port + '/users/preTest',
+            data,
+            success: function (res) {
+                console.log(res.body);
+                if (res.status == 0) {
+                    expdata.preTest=true;
+                    window.localStorage.setItem("userInfo", JSON.stringify(expdata));
+                    alert("已提交，即将前往下一步");
+                    $(location).attr('href', 'video.html');
+                    return;
+                }
+            }
+        })
+    }
+});
+
+function checkChoice(answerNumber) {
+    console.log(answerNumber);
+    var radioName = "answer" + answerNumber;
+    var radio = document.getElementsByName(radioName);
     for (var i = 0; i < radio.length; i++) {
         if (radio[i].checked) {
-            gender = radio[i].value;
-            data = {id: expdata.id, name: name, gender: gender,phone: expdata.phone,videoid:expdata.videoId};
-            flag=false;
-            $.ajax({
-                type: 'post',
-                url: 'http://'+server.ip+':'+server.port+'/users/preTest',
-                data,
-                success: function (res) {
-                    if (res.status == 0) {
-                        console.log("ajax success");
-                        flag=true;
-                        alert("提交成功");
-                        $(location).attr('href', 'video.html');
-                        expdata.preTest = true;
-                        window.localStorage.setItem("userInfo", JSON.stringify(expdata));
-                    } else if (res.status == 1) {
-                        alert("未查询到您的手机号，请检查是否有误，有问题请与实验人员联系");
-                    }
-                },
-                error: function (res) {
-                    console.log("错误"+res);
+            if (answerData.choice[answerNumber - 1] != null) {
+                if (answerData.choice[answerNumber - 1] == " ") {
+                    answerData.answeredNum++;
                 }
-            });
-            // if (!flag){
-            //     alert("提交成功");
-            //     $(location).attr('href', 'video.html');
-            // }
+                answerData.choice[answerNumber - 1] = radio[i].value;
+            } else {
+                answerData.answeredNum++;
+                answerData.choice.push(radio[i].value);
+            }
             return;
         }
     }
-});
+    if (answerData.choice[answerNumber - 1] == null) {
+        answerData.choice.push(' ');
+    }
+}
