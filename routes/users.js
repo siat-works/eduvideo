@@ -2,7 +2,7 @@ var express = require('express');
 const mysql = require('mysql');
 var db = require('../config/config');
 var query = require('../config/sql_query');
-
+var online_num=0;
 var connection;
 
 function handleDisconnect() {
@@ -40,6 +40,20 @@ var router = express.Router();
 /* GET users listing. */
 router.get('/', function (req, res, next) {
     res.send('respond with a resource');
+});
+
+
+router.post('/video',function (req,res) {
+    var params=req.body;
+    console.log(params.online);
+    if (params.online=='true') {
+        console.log('观看');
+        online_num += 1;
+    }else{
+        console.log('离开');
+        online_num-=1;
+    }
+    console.log(online_num);
 });
 
 router.post('/login', function (req, res) {

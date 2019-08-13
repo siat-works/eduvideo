@@ -34,6 +34,6 @@ test_dict.to_excel('testData.xlsx',index=False)
 video_dir='videoLog/'
 data=preprocess(video_dir)
 video_dict=pd.DataFrame(data[0],columns=['id','date_time','cur_Time','cur_action','skip_time'])
-video_dict=video_dict.rename(columns={'cur_Time': '动作发生时间','cur_action': '动作类型','skip_time': '动作跳过时间'})
+video_dict=video_dict.rename(columns={'cur_Time': '动作发生时播放进度','cur_action': '动作类型','skip_time': '动作跳过时长','date_time': '发生时间'})
 video_dict.to_excel('videoLogData.xlsx',index=False)
 pass

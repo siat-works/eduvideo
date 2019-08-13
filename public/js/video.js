@@ -13,6 +13,12 @@ var server = server_config;
 
 $(document).ready(function () {
     console.log(expdata);
+    data={online: true};
+    $.ajax({
+        type: 'post',
+        url: 'http://' + server.ip + ':' + server.port + '/users/video',
+        data
+    });
     if (expdata != null) {
         $('#user').text(expdata.phone);
         console.log(expdata);
@@ -33,6 +39,16 @@ $(document).ready(function () {
         $(location).attr("href", "postTest.html");
     }
 });
+
+window.onbeforeunload=function (e) {
+    console.log("不看了");
+    data={online: false};
+    $.ajax({
+        type: 'post',
+        url: 'http://' + server.ip + ':' + server.port + '/users/video',
+        data
+    });
+};
 
 function signinClick(exdata) {
     if (exdata != null) {
@@ -76,7 +92,7 @@ Date.prototype.format = function(fmt){//将Date()获取的时间转化为正常�
   }
 
   return fmt;
-}
+};
 
 window.onload = function () {
     isLRKey = 0;
@@ -93,17 +109,19 @@ window.onload = function () {
     firsttime = myVideo.currentTime;
     lasttime = myVideo.currentTime;
     
-    localStorage.setItem("date_ymd", JSON.stringify(actionlist))
+    localStorage.setItem("action_record", JSON.stringify(actionlist))
     myVideo.addEventListener("playing", firsttimeupdate);//添加视频播放变化的监听
     //myVideo.addEventListener("paused", lasttimeupdate);
     myVideo.addEventListener("play", checkplayed);//添加视频播放监听
     myVideo.addEventListener("pause", checkplayed);//添加视频暂停监听
     myVideo.addEventListener("timeupdate", checktimeupdate);//添加视频进度监听
-}
 
-function get_date_time(fmt) {//根据格式获取当前时间
+};
+
+function get_date_time() {//根据格式获取当前时间
     var now = new Date();
-    return now.format(fmt);
+    var time=now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate()+' '+now.getHours()+' : '+now.getMinutes()+' : '+now.getSeconds();
+    return time;
 }
 
 function Actionstroge(id, datetime, time, action, sktime) {//存储action和id等数据到localstorage中
@@ -120,8 +138,8 @@ function Actionstroge(id, datetime, time, action, sktime) {//存储action和id�
     newaction.cur_action = action;
     newaction.skip_time = sktime;
     actionlist.push(newaction);
-
-    localStorage.setItem("date_time", get_date_time("yyyy-MM-dd"));//存储日期数据到localstorage中
+    //
+    // localStorage.setItem("date_time", get_date_time());//存储日期数据到localstorage中
     localStorage.setItem("action_record", JSON.stringify(actionlist));//存储数据到localstorage中，数据类型为json
     /*var read = JSON.parse(localStorage.getItem('action_record'));
     console.log(read, read.length);*/
@@ -157,9 +175,9 @@ function keyUp(e) {//左右键松开事件
     if (keycode == 37 || keycode == 39) {
         console.log((document.getElementById("videoPart").currentTime - firsttime) * isLRKey);//键盘左右键快进后退大概多少秒
         if (keycode == 37) {
-            Actionstroge(userid, get_date_time("hh:mm:ss"), myVideo.currentTime.toString(), "left_start", String(Math.abs(document.getElementById("videoPart").currentTime - firsttime) * isLRKey));
+            Actionstroge(userid, get_date_time(), myVideo.currentTime.toString(), "left_start", String(Math.abs(document.getElementById("videoPart").currentTime - firsttime) * isLRKey));
         } else {
-            Actionstroge(userid, get_date_time("hh:mm:ss"), myVideo.currentTime.toString(), "right_start", String(Math.abs(document.getElementById("videoPart").currentTime - firsttime) * isLRKey));
+            Actionstroge(userid, get_date_time(), myVideo.currentTime.toString(), "right_start", String(Math.abs(document.getElementById("videoPart").currentTime - firsttime) * isLRKey));
         }
         isLRKey = 0;
     }
@@ -195,7 +213,7 @@ function checkplayed() {//监控是否暂停或者播放
         state = "play";
     }
     console.log(state);
-    Actionstroge(userid, get_date_time("hh:mm:ss"), myVideo.currentTime.toString(), state, "null");
+    Actionstroge(userid, get_date_time(), myVideo.currentTime.toString(), state, "null");
 }
 
 function firsttimeupdate() {//记录鼠标首次快进或者后退前的时间
@@ -204,10 +222,10 @@ function firsttimeupdate() {//记录鼠标首次快进或者后退前的时间
     var changetime = firsttime - myVideo.currentTime;
     if (changetime > 0) {
         console.log("left");
-        Actionstroge(userid, get_date_time("hh:mm:ss"), myVideo.currentTime.toString(), "left", String(Math.abs(changetime)));
+        Actionstroge(userid, get_date_time(), myVideo.currentTime.toString(), "left", String(Math.abs(changetime)));
     } else {
         console.log("right");
-        Actionstroge(userid, get_date_time("hh:mm:ss"), myVideo.currentTime.toString(), "right", String(Math.abs(changetime)));
+        Actionstroge(userid, get_date_time(), myVideo.currentTime.toString(), "right", String(Math.abs(changetime)));
     }
     firsttime = myVideo.currentTime;
 }
