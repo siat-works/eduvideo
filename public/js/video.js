@@ -11,7 +11,7 @@ localStorage.setItem("action_record", "");
 var time=JSON.parse(localStorage.getItem("time")).time;
 console.log(time);
 if (time == null || time <= 0) {
-    time = 20*60;
+    time = 2*10;
 }
 var server = server_config;
 var finished = false;
@@ -19,6 +19,11 @@ var finished = false;
 
 $(document).ready(function () {
     console.log(expdata);
+    if (!expdata.videoFinished){
+        $('#next').attr('href','#');
+    }else {
+        $('#next').attr('href','#');
+    }
     data = {online: true};
     $.ajax({
         type: 'post',
@@ -50,10 +55,6 @@ $(document).ready(function () {
 });
 
 window.onbeforeunload = function (e) {
-    if (finished) {
-    } else {
-        $(location).attr('href', 'video.html');
-    }
     data = {online: false};
     $.ajax({
         type: 'post',
@@ -85,6 +86,7 @@ $('#countdown').timeTo({
     callback: function () {
         expdata.videoFinished = true;
         window.localStorage.setItem('userInfo', JSON.stringify(expdata));
+        $('#next').attr('href','test.html');
     },
     step: function () {
         // console.log("完成10s了")
@@ -92,7 +94,9 @@ $('#countdown').timeTo({
         window.localStorage.setItem('time',JSON.stringify({time: time}));
     },
     stepCount: 10,
-    start: true
+    start: true,
+    fontSize: 15,
+    captionSize: 15
 });
 
 Date.prototype.format = function (fmt) {//将Date()获取的时间转化为正常时间
