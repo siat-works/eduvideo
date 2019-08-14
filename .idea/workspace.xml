@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="047c8ce2-8bd4-422f-b857-0b4f6ef36e40" name="Default Changelist" comment="全新改版">
+    <list default="true" id="047c8ce2-8bd4-422f-b857-0b4f6ef36e40" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/postTest/13246839034_postTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/postTest/13246839034_postTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preTest/13246839034_preTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/preTest/13246839034_preTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/process_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/process_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/postTest.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/postTest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/video.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/video.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/postTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/postTest.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/test.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/video.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/video.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/users.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/13246839034_test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/13246839034_test.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,13 +37,13 @@
         <option value="bolixinyu &lt;2410781627@qq.com&gt;" />
       </list>
     </option>
-    <option name="ROOT_SYNC" value="DONT_SYNC" />
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="ProjectId" id="1OdPfXZ3hAUQD2Cqf2q7ej3Qx3O" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -142,6 +144,8 @@
       <workItem from="1565660303575" duration="99000" />
       <workItem from="1565660636158" duration="1125000" />
       <workItem from="1565683465660" duration="323000" />
+      <workItem from="1565746166743" duration="15981000" />
+      <workItem from="1565770445402" duration="2050000" />
     </task>
     <task id="LOCAL-00001" summary="提高复用性">
       <created>1565078217598</created>
@@ -199,7 +203,28 @@
       <option name="project" value="LOCAL" />
       <updated>1565608055682</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="全新改版+video download禁用+同时观看人数查看">
+      <created>1565689269133</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1565689269133</updated>
+    </task>
+    <task id="LOCAL-00010" summary="再次全新改版+倒计时钟+同时观看视频人数">
+      <created>1565756096515</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1565756096515</updated>
+    </task>
+    <task id="LOCAL-00011" summary="应甲方要求，再次改版">
+      <created>1565765670889</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1565765670889</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -257,7 +282,10 @@
     <MESSAGE value="admin bug修复" />
     <MESSAGE value="解决数据库超时断开连接问题" />
     <MESSAGE value="全新改版" />
-    <option name="LAST_COMMIT_MESSAGE" value="全新改版" />
+    <MESSAGE value="全新改版+video download禁用+同时观看人数查看" />
+    <MESSAGE value="再次全新改版+倒计时钟+同时观看视频人数" />
+    <MESSAGE value="应甲方要求，再次改版" />
+    <option name="LAST_COMMIT_MESSAGE" value="应甲方要求，再次改版" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

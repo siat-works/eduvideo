@@ -8,7 +8,7 @@ answerData = {
     age: '',
     major: '',
     level: '',
-    video: expdata==null?-1:expdata.videoId,
+    video: expdata == null ? -1 : expdata.videoId,
     answeredNum: 0
 };
 
@@ -25,7 +25,7 @@ $(document).ready(function () {
     } else if (expdata.preTest == false) {
         alert("请先完成课前调查");
         $(location).attr("href", "preTest.html");
-    } else if(expdata.videoFinished==false){
+    } else if (expdata.videoFinished == false) {
         alert("请观看完整个视频才能进行答题")
         $(location).attr("href", "video.html");
     } else if (!expdata.test) {
@@ -38,7 +38,7 @@ $(document).ready(function () {
 window.onbeforeunload = function (e) {
     if (expdata.test) {
         console.log("离开测试了");
-        if (answerData.answeredNum < 21) {
+        if (answerData.answeredNum < 13) {
             var msg = "您还没有完成该测试，确定要离开本页面吗？做题进度将会被保留，可稍后继续作答";
             var e = window.event || e;
             if (e) {
@@ -71,33 +71,42 @@ $('#user').click(function () {
 $('#submit').click(function (e) {
     console.log("提交点击")
     //选择题答案
-    var flag=checkAnswer();
-    if (flag) {
-        if (answerData == null || answerData.answeredNum < 13) {
-            alert("请答完所有题目在提交")
-        } else {
-            data = answerData;
-            $.ajax({
-                type: 'post',
-                url: 'http://' + server.ip + ':' + server.port + '/users/postTest',
-                data,
-                success: function (res) {
-                    console.log(res.body);
-                    if (res.status == 0) {
-                        alert("您已完成此次实验，感谢您的参与，再见(￣▽￣)／");
-                        window.localStorage.setItem("userInfo", null);
-                        $(location).attr('href', 'index.html');
-                        return;
-                    } else if (res.status == 1) {
-                        alert("未查询到您的手机号，请检查是否有误，有问题请与实验人员联系");
-                    }
+    checkAnswer();
+    if (answerData == null || answerData.answeredNum < 13) {
+        alert("请您答完所有题目才能提交")
+    } else {
+        data = answerData;
+        $.ajax({
+            type: 'post',
+            url: 'http://' + server.ip + ':' + server.port + '/users/postTest',
+            data,
+            success: function (res) {
+                console.log(res.body);
+                if (res.status == 0) {
+                    alert("您已完成此次实验，感谢您的参与，再见(￣▽￣)／");
+                    window.localStorage.setItem("userInfo", null);
+                    $(location).attr('href', 'index.html');
+                    return;
+                } else if (res.status == 1) {
+                    alert("未查询到您的手机号，请检查是否有误，有问题请与实验人员联系");
                 }
-            })
-        }
+            }
+        })
     }
 });
 
 function checkAnswer() {
+    answerData = {
+        id: expdata == null ? -1 : expdata.id,
+        phone: expdata == null ? -1 : expdata.phone,
+        choice: [],
+        gender: '',
+        age: '',
+        major: '',
+        level: '',
+        video: expdata == null ? -1 : expdata.videoId,
+        answeredNum: 0
+    };
     for (var i = 0; i < 9; i++) {
         checkChoice(i + 1);
     }
@@ -108,42 +117,46 @@ function checkAnswer() {
             answerData.gender = gender[i].value;
         }
     }
-    var flag=false;
-
     var age = $("#age").val();
-    if (/^[0-9]+$/.test(age))
-    {
-        var num=parseInt(age);
-        if(num>10&&num<100) {
+    if (age.length > 0) {
+        answerData.answeredNum++;
+        answerData.age = age;
+    }
+    var major = $("#major").val();
+    if (major.length > 0) {
+        answerData.answeredNum++;
+        answerData.major = major;
+    }
+
+    var level = document.getElementsByName('level');
+    for (var i = 0; i < level.length; i++) {
+        if (level[i].checked) {
+            answerData.answeredNum++;
+            answerData.level = level[i].value;
+        }
+    }
+    console.log(answerData);
+}
+
+var age = document.getElementById('age');
+age.onchange = function () {
+    var age = $("#age").val();
+    if (/^[0-9]+$/.test(age)) {
+        var num = parseInt(age);
+        if (num > 10 && num < 100) {
             answerData.answeredNum++;
             answerData.age = age;
-            flag=true;
-        }
-        else {
+            flag = true;
+        } else {
             console.log(age)
+            $('#age').val('');
             alert("请输入您的真实年龄，谢谢配合")
         }
-    }else {
+    } else {
+        $('#age').val('');
         alert("年龄中含有非法字符，请确认后重新输入");
     }
-    if (flag) {
-        var major = $("#major").val();
-        if (major.length > 0) {
-            answerData.answeredNum++;
-            answerData.major = major;
-        }
-
-        var level = document.getElementsByName('level');
-        for (var i = 0; i < level.length; i++) {
-            if (level[i].checked) {
-                answerData.answeredNum++;
-                answerData.level = level[i].value;
-            }
-        }
-        console.log(answerData);
-    }
-    return flag;
-}
+};
 
 /**
  * 单个选择题答案

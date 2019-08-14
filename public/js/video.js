@@ -20,9 +20,13 @@ var finished = false;
 $(document).ready(function () {
     console.log(expdata);
     if (!expdata.videoFinished){
+        $('#next').attr('disabled','true');
+        $('#next').css('background-color','gray');
         $('#next').attr('href','#');
     }else {
-        $('#next').attr('href','#');
+        $('#next').removeAttr('disabled');
+        $('#next').css('background-color','red');
+        $('#next').attr('href','test.html');
     }
     data = {online: true};
     $.ajax({
@@ -86,6 +90,8 @@ $('#countdown').timeTo({
     callback: function () {
         expdata.videoFinished = true;
         window.localStorage.setItem('userInfo', JSON.stringify(expdata));
+        $('#next').css('background-color','red');
+        $('#next').removeAttr('disabled');
         $('#next').attr('href','test.html');
     },
     step: function () {

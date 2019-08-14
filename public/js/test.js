@@ -116,14 +116,14 @@ function loadCode() {
 window.onbeforeunload = function (e) {
     if (expdata.videoFinished) {
         if (answerData.answeredNum < 9) {
-            var msg = "您还没有完成该测试，确定要离开本页面吗？做题进度将会被保留，可稍后继续作答";
-            var e = window.event || e;
-            if (e) {
-                e.returnValue = msg;
-            }
+            // var msg = "您还没有完成该测试，确定要离开本页面吗？做题进度将会被保留，可稍后继续作答";
+            // var e = window.event || e;
+            // if (e) {
+            //     e.returnValue = msg;
+            // }
             checkAnswer();
             window.localStorage.setItem("answer", JSON.stringify(answerData));
-            return msg;
+            // return msg;
         }
     }
 }
