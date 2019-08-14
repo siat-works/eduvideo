@@ -6,14 +6,20 @@ var playingtime;
 var lasttime;
 var isLRKey;//是否触发左右键键盘事件
 var actionlist = new Array();
-var userid = expdata==null?-1:expdata.phone;
+var userid = expdata == null ? -1 : expdata.phone;
 localStorage.setItem("action_record", "");
+var time=JSON.parse(localStorage.getItem("time")).time;
+console.log(time);
+if (time == null || time <= 0) {
+    time = 20*60;
+}
 var server = server_config;
+var finished = false;
 
 
 $(document).ready(function () {
     console.log(expdata);
-    data={online: true};
+    data = {online: true};
     $.ajax({
         type: 'post',
         url: 'http://' + server.ip + ':' + server.port + '/users/video',
@@ -27,22 +33,28 @@ $(document).ready(function () {
         } else if (expdata.videoId == 1) {
             $('#videoPart').attr("src", "for2.mp4");
         }
+        if (expdata.videoFinished) {
+            $('#countdown').hide();
+        }
     }
     if (expdata == null || expdata.phone.length == 0) {
         alert("登录后才能完成后续步骤哦");
-        $(location).attr("href", "signup.html");
+        $(location).attr("href", "index.html");
     } else if (expdata.preTest == false) {
         alert("请先完成课前调查");
         $(location).attr("href", "preTest.html");
-    } else if (expdata.test==true) {
+    } else if (expdata.test == true) {
         alert("您已完成该步骤，请完成课后调查");
         $(location).attr("href", "postTest.html");
     }
 });
 
-window.onbeforeunload=function (e) {
-    console.log("不看了");
-    data={online: false};
+window.onbeforeunload = function (e) {
+    if (finished) {
+    } else {
+        $(location).attr('href', 'video.html');
+    }
+    data = {online: false};
     $.ajax({
         type: 'post',
         url: 'http://' + server.ip + ':' + server.port + '/users/video',
@@ -55,10 +67,10 @@ function signinClick(exdata) {
         var msg = "您已登录，确定要注销该账户吗？";
         if (confirm(msg) == true) {
             exdata = null;
-            $(location).attr("href", "signup.html");
+            $(location).attr("href", "index.html");
         }
     } else {
-        $(location).attr("href", "signup.html");
+        $(location).attr("href", "index.html");
     }
     return exdata;
 }
@@ -68,30 +80,44 @@ $('#user').click(function () {
     window.localStorage.setItem("userInfo", JSON.stringify(expdata));
 });
 
+$('#countdown').timeTo({
+    seconds: time,
+    callback: function () {
+        expdata.videoFinished = true;
+        window.localStorage.setItem('userInfo', JSON.stringify(expdata));
+    },
+    step: function () {
+        // console.log("完成10s了")
+        time-=10;
+        window.localStorage.setItem('time',JSON.stringify({time: time}));
+    },
+    stepCount: 10,
+    start: true
+});
 
-Date.prototype.format = function(fmt){//将Date()获取的时间转化为正常时间
-  var o = {
-    "M+" : this.getMonth()+1,                 //月份
-    "d+" : this.getDate(),                    //日
-    "h+" : this.getHours(),                   //小时
-    "m+" : this.getMinutes(),                 //分
-    "s+" : this.getSeconds(),                 //秒
-    "q+" : Math.floor((this.getMonth()+3)/3), //季度
-    "S"  : this.getMilliseconds()             //毫秒
-  };
+Date.prototype.format = function (fmt) {//将Date()获取的时间转化为正常时间
+    var o = {
+        "M+": this.getMonth() + 1,                 //月份
+        "d+": this.getDate(),                    //日
+        "h+": this.getHours(),                   //小时
+        "m+": this.getMinutes(),                 //分
+        "s+": this.getSeconds(),                 //秒
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+        "S": this.getMilliseconds()             //毫秒
+    };
 
-  if(/(y+)/.test(fmt)){
-    fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
-  }
-        
-  for(var k in o){
-    if(new RegExp("("+ k +")").test(fmt)){
-      fmt = fmt.replace(
-        RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));  
-    }       
-  }
+    if (/(y+)/.test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    }
 
-  return fmt;
+    for (var k in o) {
+        if (new RegExp("(" + k + ")").test(fmt)) {
+            fmt = fmt.replace(
+                RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        }
+    }
+
+    return fmt;
 };
 
 window.onload = function () {
@@ -108,7 +134,7 @@ window.onload = function () {
 
     firsttime = myVideo.currentTime;
     lasttime = myVideo.currentTime;
-    
+
     localStorage.setItem("action_record", JSON.stringify(actionlist))
     myVideo.addEventListener("playing", firsttimeupdate);//添加视频播放变化的监听
     //myVideo.addEventListener("paused", lasttimeupdate);
@@ -120,7 +146,7 @@ window.onload = function () {
 
 function get_date_time() {//根据格式获取当前时间
     var now = new Date();
-    var time=now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate()+' '+now.getHours()+' : '+now.getMinutes()+' : '+now.getSeconds();
+    var time = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate() + ' ' + now.getHours() + ' : ' + now.getMinutes() + ' : ' + now.getSeconds();
     return time;
 }
 

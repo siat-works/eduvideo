@@ -53,7 +53,18 @@ router.post('/video',function (req,res) {
         console.log('离开');
         online_num-=1;
     }
-    console.log(online_num);
+    var fs = require("fs");//申请文件处理var
+    var now = new Date();
+    var time = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate() + ' ' + now.getHours() + ' : ' + now.getMinutes() + ' : ' + now.getSeconds();
+    var line=time+' people online: '+online_num+'\n';
+    var filepath = "onlineLog.log";//文件路径
+    fs.appendFile(filepath, line, function (err) {
+        if (err) {
+            throw err;
+        } else {
+            console.log(online_num);
+        }
+    })
 });
 
 router.post('/login', function (req, res) {

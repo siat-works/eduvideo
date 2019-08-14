@@ -6,6 +6,8 @@
     <!-- 引入 Bootstrap -->
     <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/my.css" rel="stylesheet">
+    <link href="css/timeTo.css" type="text/css" rel="stylesheet"/>
+<!--    <script src="js/jquery.min.js" type="text/javascript"></script>-->
     <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
     <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
     <!--[if lt IE 9]>
@@ -15,6 +17,8 @@
     <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="js/common.js"></script>
+
+    <script src="js/jquery.time-to.min.js" type="text/javascript"></script>
     <!-- 包括所有已编译的插件 -->
     <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript">
@@ -31,22 +35,13 @@
             <div class="row clearfix">
                 <div class="col-md-12 column">
                     <nav class="navbar navbar-default nofollow" role="navigation">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                    data-target="#bs-example-navbar-collapse-1">
-                                <span class="sr-only">切换导航</span><span class="icon-bar"></span>
-                                <span class="icon-bar"></span><span class="icon-bar"></span>
-                            </button>
-                            <a rel="nofollow" class="navbar-brand" href="index.html">主页</a>
-                        </div>
-
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
                                 <li>
                                     <a rel="nofollow" href="video.html">视频</a>
                                 </li>
                                 <li class="dropdown">
-                                    <a rel="nofollow" href="future.html" class="dropdown-toggle" data-toggle="dropdown">测试<strong
+                                    <a rel="nofollow" href="" class="dropdown-toggle" data-toggle="dropdown">测试<strong
                                             class="caret"></strong></a>
                                     <ul class="dropdown-menu">
                                         <li>
@@ -84,14 +79,19 @@
 
                         </div>
                     </div>
-                    <div class="media" style="background-color:gray;border-radius:15px;">
+                    <div class="media" style="background-color:white;border-radius:15px;">
                         <a rel="nofollow" href="#" class="pull-left"><img src="" class="media-object" alt=''/></a>
                         <div class="media-body">
-                            <h1 class="media-heading" style="color:white; text-align:center;font-size:220%;">
+                            <h1 class="media-heading" style="color:black; text-align:center;font-size:220%;">
                                 观看视频
                             </h1>
-                            <p style="color:white; text-align:center;font-size: medium">
-                                在此您须观看20分钟的微课程。该微课程将讲解如何使用Python语言编写网络爬虫程序。观看完课程后，您须完成一个课后测验。</p>
+                            <p style="color:black; text-align:center;font-size: medium">
+                                在此您须观看20分钟的微课程。该微课程将讲解如何使用Python语言编写网络爬虫程序。
+                            </p>
+                            <p style="color: red;font-size: medium;text-align: center">请您准备好耳机或音响。在观看微课程视频的时候，您需要认真观看和收听授课讲师的讲解</p>
+                            <p></p>
+                            <p style="color:black; text-align:center;font-size: medium">为确保您观看完整个20分钟的微课程，您只可能在20分钟后才能进入下一步。否则您将需要重新观看</p>
+                            <div id="countdown" style="text-align: center"></div>
                             <div class="media">
                                 <a rel="nofollow" href="#" class="pull-left"><img src="" class="media-object"
                                                                                   alt=''/></a>
@@ -102,7 +102,7 @@
                                     </video>
                                 </div>
                             </div>
-                            <p style="color:white; text-align:center;font-size: medium">
+                            <p style="color:black; text-align:center;font-size: medium">
                                 您确认观看完课程视频后，请点击“下一步”按钮开始课后测验。</p>
                         </div>
                     </div>

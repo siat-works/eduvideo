@@ -22,10 +22,13 @@ $(document).ready(function () {
     }
     if (expdata == null || expdata.phone.length == 0) {
         alert("登录后才能完成后续步骤哦");
-        $(location).attr("href", "signup.html");
+        $(location).attr("href", "index.html");
     } else if (expdata.preTest == false) {
         alert("请先完成课前调查");
         $(location).attr("href", "preTest.html");
+    } else if(expdata.videoFinished==false){
+        alert("请观看完整个视频才能进行答题")
+        $(location).attr("href", "video.html");
     } else if (expdata.test==true) {
         alert("您已完成该步骤，请完成课后调查");
         $(location).attr("href", "postTest.html");
@@ -111,16 +114,17 @@ function loadCode() {
 }
 
 window.onbeforeunload = function (e) {
-    console.log("离开测试了");
-    if (answerData.answeredNum < 9) {
-        var msg = "您还没有完成该测试，确定要离开本页面吗？做题进度将会被保留，可稍后继续作答";
-        var e = window.event || e;
-        if (e) {
-            e.returnValue = msg;
+    if (expdata.videoFinished) {
+        if (answerData.answeredNum < 9) {
+            var msg = "您还没有完成该测试，确定要离开本页面吗？做题进度将会被保留，可稍后继续作答";
+            var e = window.event || e;
+            if (e) {
+                e.returnValue = msg;
+            }
+            checkAnswer();
+            window.localStorage.setItem("answer", JSON.stringify(answerData));
+            return msg;
         }
-        checkAnswer();
-        window.localStorage.setItem("answer", JSON.stringify(answerData));
-        return msg;
     }
 }
 
@@ -129,10 +133,10 @@ function signinClick(exdata) {
         var msg = "您已登录，确定要注销该账户吗？";
         if (confirm(msg) == true) {
             exdata = null;
-            $(location).attr("href", "signup.html");
+            $(location).attr("href", "index.html");
         }
     } else {
-        $(location).attr("href", "signup.html");
+        $(location).attr("href", "index.html");
     }
     return exdata;
 }
@@ -148,8 +152,44 @@ $('#submit').click(function (e) {
     checkAnswer();
     if (answerData == null || answerData.answeredNum < 9) {
         window.localStorage.setItem("answer", JSON.stringify(answerData));
-        alert("请答完所有题目在提交")
+        if (confirm("您还有题目尚未完成，您是否确认提交答卷？")){
+            data = answerData;
+            $.ajax({
+                type: 'post',
+                url: 'http://' + server.ip + ':' + server.port + '/users/test',
+                data,
+                success: function (res) {
+                    if (res.status == 0) {
+                        // alert("提交成功");
+                        expdata.test=true;
+                        window.localStorage.setItem("userInfo",JSON.stringify(expdata));
+                        console.log(window.localStorage.getItem('action_record'));
+                        video_data=window.localStorage.getItem('action_record');
+                        data={videoLog: video_data};
+                        console.log(video_data);
+                        $.ajax({
+                                type: 'post',
+                                url: 'http://' + server.ip + ':' + server.port + '/upload',
+                                data,
+                                success: function (res) {
+                                    console.log(res.body);
+                                    if (res.status==0){
+                                        console.log(res.msg);
+                                    }
+                                }
+                            }
+                        );
+                        $(location).attr('href', 'postTest.html');
+                        return;
+                    } else if (res.status == 1) {
+                        alert("未查询到您的手机号，请检查是否有误，有问题请与实验人员联系");
+                    }
+                }
+            })
+
+        }
     } else {
+        if(confirm("是否确认提交答卷？")){
         data = answerData;
         $.ajax({
             type: 'post',
@@ -157,23 +197,23 @@ $('#submit').click(function (e) {
             data,
             success: function (res) {
                 if (res.status == 0) {
-                    alert("提交成功");
-                    expdata.test=true;
-                    window.localStorage.setItem("userInfo",JSON.stringify(expdata));
+                    // alert("提交成功");
+                    expdata.test = true;
+                    window.localStorage.setItem("userInfo", JSON.stringify(expdata));
                     console.log(window.localStorage.getItem('action_record'));
-                    video_data=window.localStorage.getItem('action_record');
-                    data={videoLog: video_data};
+                    video_data = window.localStorage.getItem('action_record');
+                    data = {videoLog: video_data};
                     console.log(video_data);
                     $.ajax({
-                        type: 'post',
-                        url: 'http://' + server.ip + ':' + server.port + '/upload',
-                        data,
-                        success: function (res) {
-                            console.log(res.body);
-                            if (res.status==0){
-                                console.log(res.msg);
+                            type: 'post',
+                            url: 'http://' + server.ip + ':' + server.port + '/upload',
+                            data,
+                            success: function (res) {
+                                console.log(res.body);
+                                if (res.status == 0) {
+                                    console.log(res.msg);
+                                }
                             }
-                        }
                         }
                     );
                     $(location).attr('href', 'postTest.html');
@@ -183,6 +223,7 @@ $('#submit').click(function (e) {
                 }
             }
         })
+    }
     }
 });
 
