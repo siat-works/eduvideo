@@ -179,6 +179,17 @@ function get_date_time() {//根据格式获取当前时间
     return time;
 }
 
+function get_storage_useful_time() {
+        var i = 0;
+
+        var myVideo = document.getElementById("videoPart");
+        var total_useful_time = 0;
+        for (i = 0; i < myVideo.played.length; i++) {
+            total_useful_time = total_useful_time + myVideo.played.end(i) - myVideo.played.start(i);
+        }
+        return total_useful_time;
+}
+
 function Actionstroge(id, datetime, time, action, sktime, before) {//存储action和id等数据到localstorage中
     var newaction = {//添加使用的对象
         id: id,
