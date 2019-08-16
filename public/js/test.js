@@ -16,10 +16,6 @@ $(document).ready(function () {
     // answerData=null;
     // window.localStorage.setItem("answer",JSON.stringify(answerData));
     console.log(localStorage.getItem('isFirst'));
-    handle_data();
-    if (localStorage.getItem('isFirst')==0){
-        localStorage.setItem('isFirst',1);
-    }
     if (expdata != null) {
         var user = $('#user').text(expdata.phone);
         console.log(user);
@@ -117,7 +113,7 @@ function loadCode() {
     }
 }
 
-window.ontotalunload = function (e) {
+window.onbeforeunload = function (e) {
     if (expdata.videoFinished) {
         if (answerData.answeredNum < 9) {
             // var msg = "您还没有完成该测试，确定要离开本页面吗？做题进度将会被保留，可稍后继续作答";
@@ -230,23 +226,34 @@ $('#submit').click(function (e) {
 });
 
 function handle_videoLog() {
+    var before_pause_num=parseFloat(localStorage.getItem('before_pause_num'));
+    var before_left_num=parseFloat(localStorage.getItem('before_left_num'));
+    var before_right_num=parseFloat(localStorage.getItem('before_right_num'));
+    var before_useful_time=parseFloat(localStorage.getItem('before_useful_time'));
+    var before_real_time=parseFloat(localStorage.getItem('before_real_time'));
+    var after_pause_num= parseFloat( localStorage.getItem('after_pause_num'));
+    var after_left_num= parseFloat( localStorage.getItem('after_left_num'));
+    var after_right_num= parseFloat( localStorage.getItem('after_right_num'));
+    var after_useful_time= parseFloat( localStorage.getItem('after_useful_time'));
+    var after_real_time= parseFloat( localStorage.getItem('after_real_time'));
     var videoLog={
-        before_pause_num: localStorage.getItem('before_pause_num'),
-        before_left_num: localStorage.getItem('before_left_num'),
-        before_right_num: localStorage.getItem('before_right_num'),
-        before_useful_time: localStorage.getItem('before_useful_time'),
-        before_real_time: localStorage.getItem('before_real_time'),
-        after_pause_num: localStorage.getItem('after_pause_num'),
-        after_left_num: localStorage.getItem('after_left_num'),
-        after_right_num: localStorage.getItem('after_right_num'),
-        after_useful_time: localStorage.getItem('after_useful_time'),
-        after_real_time: localStorage.getItem('after_real_time'),
-        total_pause_num: localStorage.getItem('before_pause_num')+localStorage.getItem('after_pause_num'),
-        total_left_num: localStorage.getItem('before_left_num')+localStorage.getItem('after_left_num'),
-        total_right_num: localStorage.getItem('before_right_num')+localStorage.getItem('after_right_num'),
-        total_useful_time: localStorage.getItem('before_useful_time')+localStorage.getItem('after_useful_time'),
-        total_real_time: localStorage.getItem('before_real_time')+localStorage.getItem('after_real_time')
-    }
+        phone: expdata.phone,
+        before_pause_num: before_pause_num,
+        before_left_num: before_left_num,
+        before_right_num: before_right_num,
+        before_useful_time: before_useful_time,
+        before_real_time: before_real_time,
+        after_pause_num: after_pause_num,
+        after_left_num: after_left_num,
+        after_right_num: after_right_num,
+        after_useful_time: after_useful_time,
+        after_real_time: after_real_time,
+        total_pause_num: before_pause_num+after_pause_num,
+        total_left_num: before_left_num+after_left_num,
+        total_right_num: before_right_num+after_right_num,
+        total_useful_time: before_useful_time+after_useful_time,
+        total_real_time: before_real_time+after_real_time
+    };
     console.log(videoLog);
     return videoLog;
 }

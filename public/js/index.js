@@ -102,8 +102,7 @@ $('#submit').click(function (e) {
                 console.log(expdata);
                 window.localStorage.setItem("userInfo", JSON.stringify(expdata));
                 $('#user').text(userphone);
-                if (localStorage.getItem('isFirst')!=null)
-                    localStorage.setItem('isFirst',0);
+                localStorage.setItem('isFirst',0);
                 return;
             } else if (res.status == 1) {
                 alert("未查询到您的手机号，请检查是否有误，有问题请与实验人员联系");

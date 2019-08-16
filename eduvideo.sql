@@ -36,15 +36,6 @@ CREATE TABLE `questionnaire` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `questionnaire`
---
-
-LOCK TABLES `questionnaire` WRITE;
-/*!40000 ALTER TABLE `questionnaire` DISABLE KEYS */;
-/*!40000 ALTER TABLE `questionnaire` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `user`
 --
 
@@ -54,24 +45,16 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `phone` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `gender` varchar(5) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `gender` varchar(12) COLLATE utf8_unicode_ci DEFAULT NULL,
   `videoId` smallint(3) DEFAULT NULL,
   `seq` int(5) DEFAULT '0',
+  `notes` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `phone_UNIQUE` (`phone`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user`
---
-
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'13246839034',NULL,1,1),(2,'13575258401',NULL,0,2);
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `videolog`
@@ -85,23 +68,6 @@ CREATE TABLE `videolog` (
   `path` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `videolog`
---
-
-LOCK TABLES `videolog` WRITE;
-/*!40000 ALTER TABLE `videolog` DISABLE KEYS */;
-/*!40000 ALTER TABLE `videolog` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Dumping events for database 'eduvideo'
---
-
---
--- Dumping routines for database 'eduvideo'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -112,4 +78,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-08-04 19:23:52
+-- Dump completed on 2019-08-16 15:59:35
