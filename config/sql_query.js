@@ -8,7 +8,8 @@ var user_query={
     selectByVideoId: 'select * from user where videoId = ?',
     update: 'update user set gender = ? where id = ?',
     updateSeqVideo: 'update user set seq = ? , videoId = ? where id = ?',
-    selectMaxSeq: 'select max(seq) as max from user'
+    selectMaxSeq: 'select max(seq) as max from user',
+    insertByAll: 'insert into user(phone, name, notes) values (?,?,?)'
 };
 
 var videoLog_query={

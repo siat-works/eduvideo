@@ -32,7 +32,7 @@ function fillTable(res) {
     var params = res.result;
     for (var i = 0; i < params.length; i++) {
         var userId = params[i].id;
-        var str = '<tr id="' + userId + '"><td>' + userId + '</td><td>' + params[i].phone + '</td><td>' + params[i].gender + '</td>';
+        var str = '<tr id="' + userId + '"><td>' + userId + '</td><td>'+params[i].name+'</td><td>' + params[i].phone + '</td><td>' + params[i].gender + '</td><td>'+params[i].notes+'</td>';
         var btn = '<td><a rel="nofollow" class="btn nofollow" type="button" style="margin:0 auto;color:wheat;background-color:red; display: block" id="del' + userId + '">删除</a></td>'
         var tail = '</tr>';
         str += btn + tail;
@@ -156,4 +156,27 @@ $('#submit').click(function (e) {
             console.log(err);
         }
     })
+});
+
+
+$('#uploadFile').click(function () {
+    var file = $('#file')[0].files[0];
+    console.log(file);
+    var data=new FormData();
+    data.append('files',file);
+    alert("正在上传文件和处理中，请稍侯片刻。。。处理完的结果将会展示在下方表格中");
+    data.append("service",'App.Passion.UploadFile');
+    $.ajax({
+        type: 'post',
+        url: 'http://' + server.ip + ':' + server.port + '/users/admin/uploadFile',
+        processData: false,
+        contentType: false,
+        data,
+        success: function (res) {
+            if (res.status==0){
+                loadTable();
+                return;
+            }
+        }
+    });
 });

@@ -1,9 +1,12 @@
 var express = require('express');
 const mysql = require('mysql');
+var fileupload=require('express-fileupload');
+var csv=require('node-csv');
 var db = require('../config/config');
 var query = require('../config/sql_query');
-var online_num=0;
+var online_num = 0;
 var connection;
+
 
 function handleDisconnect() {
     connection = mysql.createConnection(db.mysql);
@@ -37,26 +40,31 @@ setInterval(function () {
 
 var router = express.Router();
 
+router.use(fileupload({
+    useTempFiles: true,
+    tempFileDir: '/temp/'
+}));
+
 /* GET users listing. */
 router.get('/', function (req, res, next) {
     res.send('respond with a resource');
 });
 
 
-router.post('/video',function (req,res) {
-    var params=req.body;
+router.post('/video', function (req, res) {
+    var params = req.body;
     console.log(params.online);
-    if (params.online=='true') {
+    if (params.online == 'true') {
         console.log('观看');
         online_num += 1;
-    }else{
+    } else {
         console.log('离开');
-        online_num-=1;
+        online_num -= 1;
     }
     var fs = require("fs");//申请文件处理var
     var now = new Date();
     var time = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate() + ' ' + now.getHours() + ' : ' + now.getMinutes() + ' : ' + now.getSeconds();
-    var line=time+' people online: '+online_num+'\n';
+    var line = time + ' people online: ' + online_num + '\n';
     var filepath = "onlineLog.log";//文件路径
     fs.appendFile(filepath, line, function (err) {
         if (err) {
@@ -218,6 +226,40 @@ router.post('/admin/search', function (req, res) {
                 });
                 res.end();
             }
+        }
+    })
+});
+
+router.post('/admin/uploadFile', function (req, res) {
+    console.log(req.files);
+    var file = req.files.files;
+    var fs = require('fs');
+    console.log(file.name);
+    var parser=csv.createParser();
+    parser.parseFile(file.tempFilePath,function (err,data) {
+        if (err)
+            throw err;
+        else {
+            for (var i=1;i<data.length;i++){
+                // console.log(data[i]);
+                var phone=data[i][0];
+                var name =data[i][1];
+                var note =data[i][2];
+                connection.query(query.user.insertByAll,[phone,name,note],function (err,result) {
+                    if (err) {
+                        throw err;
+                        return;
+                    }
+                    else {
+                        console.log(data[i]+'插入成功')
+                    }
+                })
+            }
+            res.send({
+                status: 0,
+                msg: '插入成功'
+            });
+            res.end();
         }
     })
 });
