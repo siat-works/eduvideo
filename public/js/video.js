@@ -6,6 +6,9 @@ var playingtime;
 var lasttime;
 var isLRKey;//是否触发左右键键盘事件
 var actionlist = new Array();
+var actionlist1 = new Array();
+var real_time = 0;//计时器计数
+var time_keeper;
 var userid = expdata == null ? -1 : expdata.phone;
 localStorage.setItem("action_record", "");
 var time=JSON.parse(localStorage.getItem("time")).time;
@@ -130,13 +133,23 @@ Date.prototype.format = function (fmt) {//将Date()获取的时间转化为正�
     return fmt;
 };
 
+function get_storage_useful_time() {//获取有效播放时间
+    var i = 0;
+
+    var myVideo = document.getElementById("videoPart");
+    var total_useful_time = 0;
+    for (i = 0; i < myVideo.played.length; i++) {
+        total_useful_time = total_useful_time + myVideo.played.end(i) - myVideo.played.start(i);
+    }
+    return total_useful_time;
+}
+
 window.onload = function () {
     isLRKey = 0;
     var myVideo = document.getElementById("videoPart");
     document.onkeydown = keyDown;
     document.onkeyup = keyUp;
     //document.onmouseup = mousedown;
-
 
     playingtime = myVideo.currentTime;//初始化
     pausetime = myVideo.currentTime;
@@ -151,8 +164,17 @@ window.onload = function () {
     myVideo.addEventListener("play", checkplayed);//添加视频播放监听
     myVideo.addEventListener("pause", checkplayed);//添加视频暂停监听
     myVideo.addEventListener("timeupdate", checktimeupdate);//添加视频进度监听
-
+    
 };
+
+function timedCount() {//计时器计数
+    real_time = real_time + 1;
+    time_keeper = setTimeout("timedCount()",1000)
+    console.log(real_time);
+}
+function stopCount() {//停止计数
+    clearTimeout(time_keeper);
+}
 
 function get_date_time() {//根据格式获取当前时间
     var now = new Date();
@@ -160,7 +182,7 @@ function get_date_time() {//根据格式获取当前时间
     return time;
 }
 
-function Actionstroge(id, datetime, time, action, sktime) {//存储action和id等数据到localstorage中
+function Actionstroge(id, datetime, time, action, sktime, before) {//存储action和id等数据到localstorage中
     var newaction = {//添加使用的对象
         id: id,
         date_time: datetime,
@@ -173,15 +195,17 @@ function Actionstroge(id, datetime, time, action, sktime) {//存储action和id�
     newaction.date_time = datetime;
     newaction.cur_action = action;
     newaction.skip_time = sktime;
-    actionlist.push(newaction);
-    //
-    // localStorage.setItem("date_time", get_date_time());//存储日期数据到localstorage中
-    localStorage.setItem("action_record", JSON.stringify(actionlist));//存储数据到localstorage中，数据类型为json
-    /*var read = JSON.parse(localStorage.getItem('action_record'));
-    console.log(read, read.length);*/
+    
 
+    localStorage.setItem("date_time", get_date_time("yyyy-MM-dd"));//存储日期数据到localstorage中
+    if (before == 0) {
+        actionlist.push(newaction);
+        localStorage.setItem("before_action_record", JSON.stringify(actionlist));//存储首次收看视频的行为数据到localstorage中，数据类型为json
+    } else {
+        actionlist1.push(newaction);
+        localStorage.setItem("after_action_record", JSON.stringify(actionlist1));//存储非首次收看视频的行为数据到localstorage中，数据类型为json
+    }
 }
-
 function keyDown(e) {//左右键按下事件
     var myVideo = document.getElementById("videoPart");
     var keycode = e.which;
@@ -202,28 +226,117 @@ function keyDown(e) {//左右键按下事件
         }
         isLRKey = isLRKey + 1;
     }
-    console.log(isLRKey);
+    //console.log(isLRKey);
 }
 
 function keyUp(e) {//左右键松开事件
     var keycode = e.which;
     var myVideo = document.getElementById("videoPart");
     if (keycode == 37 || keycode == 39) {
-        console.log((document.getElementById("videoPart").currentTime - firsttime) * isLRKey);//键盘左右键快进后退大概多少秒
+        //console.log((document.getElementById("videoPart").currentTime - firsttime) * isLRKey);//键盘左右键快进后退大概多少秒
         if (keycode == 37) {
-            Actionstroge(userid, get_date_time(), myVideo.currentTime.toString(), "left_start", String(Math.abs(document.getElementById("videoPart").currentTime - firsttime) * isLRKey));
+            Actionstroge(userid, get_date_time("hh:mm:ss"), myVideo.currentTime.toString(), "left", String(Math.abs(document.getElementById("videoPart").currentTime - firsttime) * isLRKey), localStorage.getItem("isFirst"));
         } else {
-            Actionstroge(userid, get_date_time(), myVideo.currentTime.toString(), "right_start", String(Math.abs(document.getElementById("videoPart").currentTime - firsttime) * isLRKey));
+            Actionstroge(userid, get_date_time("hh:mm:ss"), myVideo.currentTime.toString(), "right", String(Math.abs(document.getElementById("videoPart").currentTime - firsttime) * isLRKey), localStorage.getItem("isFirst"));
         }
         isLRKey = 0;
     }
-    console.log(isLRKey);
+    //console.log(isLRKey);
 }
+function handle_data() {//处理数据
+    var i = 0;
+    var myVideo = document.getElementById("videoPart");        
+    var pasuelist = new Array();
+    var playlist = new Array();
+    var leftlist = new Array();
+    var rightlist = new Array();
 
+    if (localStorage.getItem("isFirst") == 0) {//首次观看视频数据处理
+        for (i = 0; i < actionlist.length; i++) {
+            //console.log(actionlist[i].cur_action + ": " + actionlist[i].cur_Time);
+            switch(actionlist[i].cur_action) {
+                case "play":
+                    playlist.push(actionlist[i].cur_Time);
+                    break;
+                case "pause":
+                    pasuelist.push(actionlist[i].cur_Time);
+                    break;
+                case "left":
+                    leftlist.push(actionlist[i].cur_Time);
+                    break;
+                case "right":
+                    rightlist.push(actionlist[i].cur_Time);
+                    break;
+                default:
+                    break;
+            }
+        }
+    } else {//非首次观看视频数据处理
+        for (i = 0; i < actionlist1.length; i++) {
+            //console.log(actionlist[i].cur_action + ": " + actionlist[i].cur_Time);
+            switch(actionlist1[i].cur_action) {
+                case "play":
+                    playlist.push(actionlist1[i].cur_Time);
+                    break;
+                case "pause":
+                    pasuelist.push(actionlist1[i].cur_Time);
+                    break;
+                case "left":
+                    leftlist.push(actionlist1[i].cur_Time);
+                    break;
+                case "right":
+                    rightlist.push(actionlist1[i].cur_Time);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    if (rightlist[0] == "0") {//去除首次记录的right的错误
+        rightlist.splice(0, 1);
+    }
+    for (i = 0; i < rightlist.length; i++) {//去除right和play及pause重合错误
+        var index = playlist.indexOf(rightlist[i]);
+        if (index > -1) {
+            playlist.splice(index, 1);
+        }
+        var index = pasuelist.indexOf(rightlist[i]);
+        if (index > -1) {
+            pasuelist.splice(index, 1);
+        }
+    }
+    for (i = 0; i < leftlist.length; i++) {//去除left和play及pause重合错误
+        var index = playlist.indexOf(leftlist[i]);
+        if (index > -1) {
+            playlist.splice(index, 1);
+        }
+        var index = pasuelist.indexOf(leftlist[i]);
+        if (index > -1) {
+            pasuelist.splice(index, 1);
+        }
+    }
+    console.log(localStorage.getItem("isFirst"))
+    if (localStorage.getItem("isFirst") == 0) {//首次观看数据存储
+        localStorage.setItem("before_pause_num", pasuelist.length);
+        localStorage.setItem("before_left_num", leftlist.length);
+        localStorage.setItem("before_right_num", rightlist.length);
+        localStorage.setItem("before_useful_time", get_storage_useful_time());
+        localStorage.setItem("before_real_time", real_time);
+        console.log(localStorage.getItem("before_pause_num"));
+    } else {//非首次观看数据存储
+        localStorage.setItem("after_pause_num", pasuelist.length);
+        localStorage.setItem("after_left_num", leftlist.length);
+        localStorage.setItem("after_right_num", rightlist.length);
+        localStorage.setItem("after_useful_time", get_storage_useful_time());
+        localStorage.setItem("after_real_time", real_time);
+        console.log(localStorage.getItem("after_pause_num"));
+    }
+    console.log(get_storage_useful_time());
+}
 function checktimeupdate() {//监控视频播放进度
     var myVideo = document.getElementById("videoPart");
     lasttime = myVideo.currentTime;
-    // console.log(get_date_time("hh:mm:ss"));
+    //console.log(get_date_time("hh:mm:ss"));
 }
 
 function parseTime(time) {//秒化分秒
@@ -249,19 +362,23 @@ function checkplayed() {//监控是否暂停或者播放
         state = "play";
     }
     console.log(state);
-    Actionstroge(userid, get_date_time(), myVideo.currentTime.toString(), state, "null");
+    Actionstroge(userid, get_date_time("hh:mm:ss"), myVideo.currentTime.toString(), state, "null", localStorage.getItem("isFirst"));
 }
 
 function firsttimeupdate() {//记录鼠标首次快进或者后退前的时间
     var myVideo = document.getElementById("videoPart");
     //console.log(firsttime);
     var changetime = firsttime - myVideo.currentTime;
+    var flag = 0;
+    flag = 0;
+    //for (i = 0; i < myVideo.played.length; i++)
+        //console.log(Math.abs(myVideo.played.start(i) - myVideo.currentTime).toString());
     if (changetime > 0) {
         console.log("left");
-        Actionstroge(userid, get_date_time(), myVideo.currentTime.toString(), "left", String(Math.abs(changetime)));
+        Actionstroge(userid, get_date_time("hh:mm:ss"), myVideo.currentTime.toString(), "left", String(Math.abs(changetime)), localStorage.getItem("isFirst"));
     } else {
         console.log("right");
-        Actionstroge(userid, get_date_time(), myVideo.currentTime.toString(), "right", String(Math.abs(changetime)));
+        Actionstroge(userid, get_date_time("hh:mm:ss"), myVideo.currentTime.toString(), "right", String(Math.abs(changetime)), localStorage.getItem("isFirst"));
     }
     firsttime = myVideo.currentTime;
 }

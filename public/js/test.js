@@ -15,7 +15,11 @@ var server = server_config;
 $(document).ready(function () {
     // answerData=null;
     // window.localStorage.setItem("answer",JSON.stringify(answerData));
-    console.log(expdata);
+    console.log(localStorage.getItem('isFirst'));
+    handle_data();
+    if (localStorage.getItem('isFirst')==0){
+        localStorage.setItem('isFirst',1);
+    }
     if (expdata != null) {
         var user = $('#user').text(expdata.phone);
         console.log(user);
@@ -64,7 +68,7 @@ $(document).ready(function () {
 });
 
 function loadAnswer() {
-    console.log(answerData)
+    console.log(answerData);
     if (answerData.choice != null) {
         for (var i = 0; i < answerData.choice.length; i++) {
             loadchoice(i);
@@ -113,7 +117,7 @@ function loadCode() {
     }
 }
 
-window.onbeforeunload = function (e) {
+window.ontotalunload = function (e) {
     if (expdata.videoFinished) {
         if (answerData.answeredNum < 9) {
             // var msg = "您还没有完成该测试，确定要离开本页面吗？做题进度将会被保留，可稍后继续作答";
@@ -133,6 +137,8 @@ function signinClick(exdata) {
         var msg = "您已登录，确定要注销该账户吗？";
         if (confirm(msg) == true) {
             exdata = null;
+            localStorage.setItem('userInfo',null);
+            localStorage.setItem('isFirst',null);
             $(location).attr("href", "index.html");
         }
     } else {
@@ -159,21 +165,19 @@ $('#submit').click(function (e) {
                 url: 'http://' + server.ip + ':' + server.port + '/users/test',
                 data,
                 success: function (res) {
+                    let data;
                     if (res.status == 0) {
                         // alert("提交成功");
-                        expdata.test=true;
-                        window.localStorage.setItem("userInfo",JSON.stringify(expdata));
-                        console.log(window.localStorage.getItem('action_record'));
-                        video_data=window.localStorage.getItem('action_record');
-                        data={videoLog: video_data};
-                        console.log(video_data);
+                        expdata.test = true;
+                        window.localStorage.setItem("userInfo", JSON.stringify(expdata));
+                        data = handle_videoLog();
                         $.ajax({
                                 type: 'post',
                                 url: 'http://' + server.ip + ':' + server.port + '/upload',
                                 data,
                                 success: function (res) {
                                     console.log(res.body);
-                                    if (res.status==0){
+                                    if (res.status == 0) {
                                         console.log(res.msg);
                                     }
                                 }
@@ -196,14 +200,12 @@ $('#submit').click(function (e) {
             url: 'http://' + server.ip + ':' + server.port + '/users/test',
             data,
             success: function (res) {
+                let data;
                 if (res.status == 0) {
                     // alert("提交成功");
                     expdata.test = true;
                     window.localStorage.setItem("userInfo", JSON.stringify(expdata));
-                    console.log(window.localStorage.getItem('action_record'));
-                    video_data = window.localStorage.getItem('action_record');
-                    data = {videoLog: video_data};
-                    console.log(video_data);
+                    data = handle_videoLog();
                     $.ajax({
                             type: 'post',
                             url: 'http://' + server.ip + ':' + server.port + '/upload',
@@ -226,6 +228,28 @@ $('#submit').click(function (e) {
     }
     }
 });
+
+function handle_videoLog() {
+    var videoLog={
+        before_pause_num: localStorage.getItem('before_pause_num'),
+        before_left_num: localStorage.getItem('before_left_num'),
+        before_right_num: localStorage.getItem('before_right_num'),
+        before_useful_time: localStorage.getItem('before_useful_time'),
+        before_real_time: localStorage.getItem('before_real_time'),
+        after_pause_num: localStorage.getItem('after_pause_num'),
+        after_left_num: localStorage.getItem('after_left_num'),
+        after_right_num: localStorage.getItem('after_right_num'),
+        after_useful_time: localStorage.getItem('after_useful_time'),
+        after_real_time: localStorage.getItem('after_real_time'),
+        total_pause_num: localStorage.getItem('before_pause_num')+localStorage.getItem('after_pause_num'),
+        total_left_num: localStorage.getItem('before_left_num')+localStorage.getItem('after_left_num'),
+        total_right_num: localStorage.getItem('before_right_num')+localStorage.getItem('after_right_num'),
+        total_useful_time: localStorage.getItem('before_useful_time')+localStorage.getItem('after_useful_time'),
+        total_real_time: localStorage.getItem('before_real_time')+localStorage.getItem('after_real_time')
+    }
+    console.log(videoLog);
+    return videoLog;
+}
 
 function checkAnswer() {
     for (var i = 0; i < 5; i++) {

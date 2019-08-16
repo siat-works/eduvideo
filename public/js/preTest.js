@@ -31,6 +31,8 @@ function signinClick(exdata) {
         var msg = "您已登录，确定要注销该账户吗？";
         if (confirm(msg) == true) {
             exdata = null;
+            localStorage.setItem('userInfo',null);
+            localStorage.setItem('isFirst',null);
             $(location).attr("href", "index.html");
         }
     } else {
