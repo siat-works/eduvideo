@@ -1,1 +1,1 @@
-{"id":"1","choice[]":["a","a","b","c","c"],"text[]":["sadzxc","aczxca","zxcasx"],"code":"caxac","score":"16","video":"1","phone":"13246839034","answeredNum":"10"}
+{"id":"6","choice[]":["a"," "," "," "," "],"text[]":[" "," "," "],"score":"4","video":"1","phone":"13246839034","answeredNum":"1"}

@@ -7,6 +7,7 @@
  * @param postTest: 课后调查是否已完成
  * @param test: 课堂测试是否已完成
  */
+// window.localStorage.setItem("userInfo",null);
 expdata = {
     phone: '',
     id: '',
@@ -22,7 +23,6 @@ var server = server_config;
 
 $(document).ready(function () {
     // answerData=null;
-    // window.localStorage.setItem("answer",JSON.stringify(answerData));
     console.log(expdata);
     if (expdata != null) {
         var user = $('#user').text(expdata.phone);
@@ -46,7 +46,6 @@ function signinClick(exdata) {
         if (confirm(msg) == true) {
             exdata = null;
             localStorage.setItem('userInfo',null);
-            localStorage.setItem('isFirst',null);
             $(location).attr("href", "index.html");
         }
     } else {
@@ -82,6 +81,7 @@ $('#submit').click(function (e) {
         preTest: false,
         test: false,
         postTest: false,
+        first_to_video: 0,
         videoFinished:false,
         videoId: -1
     };
@@ -102,7 +102,6 @@ $('#submit').click(function (e) {
                 console.log(expdata);
                 window.localStorage.setItem("userInfo", JSON.stringify(expdata));
                 $('#user').text(userphone);
-                localStorage.setItem('isFirst',0);
                 return;
             } else if (res.status == 1) {
                 alert("未查询到您的手机号，请检查是否有误，有问题请与实验人员联系");

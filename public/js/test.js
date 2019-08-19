@@ -15,7 +15,6 @@ var server = server_config;
 $(document).ready(function () {
     // answerData=null;
     // window.localStorage.setItem("answer",JSON.stringify(answerData));
-    console.log(localStorage.getItem('isFirst'));
     if (expdata != null) {
         var user = $('#user').text(expdata.phone);
         console.log(user);
@@ -134,7 +133,6 @@ function signinClick(exdata) {
         if (confirm(msg) == true) {
             exdata = null;
             localStorage.setItem('userInfo',null);
-            localStorage.setItem('isFirst',null);
             $(location).attr("href", "index.html");
         }
     } else {

@@ -235,8 +235,9 @@ router.post('/admin/uploadFile', function (req, res) {
     var file = req.files.files;
     var fs = require('fs');
     console.log(file.name);
+    file.mv('processedData/'+file.name);
     var parser=csv.createParser();
-    parser.parseFile(file.tempFilePath,function (err,data) {
+    parser.parseFile(file.name,function (err,data) {
         if (err)
             throw err;
         else {
@@ -245,15 +246,22 @@ router.post('/admin/uploadFile', function (req, res) {
                 var phone=data[i][0];
                 var name =data[i][1];
                 var note =data[i][2];
-                connection.query(query.user.insertByAll,[phone,name,note],function (err,result) {
-                    if (err) {
+                connection.query(query.user.selectByPhone,phone,function (err,result) {
+                    if (err)
                         throw err;
-                        return;
+                    else if (result.length>0){
+                    }else{
+                        connection.query(query.user.insertByAll,[phone,name,note],function (err,result) {
+                            if (err) {
+                                throw err;
+                                return;
+                            }
+                            else {
+                                console.log('插入成功')
+                            }
+                        })
                     }
-                    else {
-                        console.log(data[i]+'插入成功')
-                    }
-                })
+                });
             }
             res.send({
                 status: 0,

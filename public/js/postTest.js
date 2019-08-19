@@ -56,7 +56,6 @@ function signinClick(exdata) {
         if (confirm(msg) == true) {
             exdata = null;
             localStorage.setItem('userInfo',null);
-            localStorage.setItem('isFirst',null);
             $(location).attr("href", "index.html");
         }
     } else {
