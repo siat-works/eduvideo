@@ -161,6 +161,10 @@ $('#submit').click(function (e) {
 
 $('#uploadFile').click(function () {
     var file = $('#file')[0].files[0];
+    if (file == null){
+        alert('请选择文件在上传');
+        return;
+    }
     console.log(file);
     var data=new FormData();
     data.append('files',file);
@@ -176,6 +180,8 @@ $('#uploadFile').click(function () {
             if (res.status==0){
                 loadTable();
                 return;
+            }else if (res.status==5){
+                alert(res.phone+'已存在，请查证文件');
             }
         }
     });

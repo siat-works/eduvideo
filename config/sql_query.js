@@ -6,7 +6,8 @@ var user_query={
     selectById: 'select * from user where id = ?',
     query: 'select * from user',
     selectByVideoId: 'select * from user where videoId = ?',
-    update: 'update user set gender = ? where id = ?',
+    updateGender: 'update user set gender = ? where id = ?',
+    updateAll: 'update user set phone = ? , name = ? , notes = ? where phone = ?',
     updateSeqVideo: 'update user set seq = ? , videoId = ? where id = ?',
     selectMaxSeq: 'select max(seq) as max from user',
     insertByAll: 'insert into user(phone, name, notes) values (?,?,?)'
