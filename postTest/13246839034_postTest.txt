@@ -1,1 +1,1 @@
-{"id":"1","phone":"13246839034","choice[]":["7","6","7","7","7","7","6","female","2"],"gender":"female","age":"23","major":"asd","level":"3","video":"1","answeredNum":"13"}
+{"id":"47","phone":"13246839034","choice0":"7","choice1":"6","choice2":"5","choice3":"5","choice4":"5","choice5":"5","choice6":"4","choice7":"female","choice8":"3","gender":"male","age":"23","major":"adas","level":"3","video":"1","answeredNum":"13"}

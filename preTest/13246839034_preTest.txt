@@ -1,1 +1,1 @@
-{"id":"6","phone":"13246839034","choice[]":["7","6","7","6","7"],"video":"1","answeredNum":"5"}
+{"id":"47","phone":"13246839034","pre_questionnaire_choice0":"5","pre_questionnaire_choice1":"6","pre_questionnaire_choice2":"6","pre_questionnaire_choice3":"5","pre_questionnaire_choice4":"4","video":"1","answeredNum":"5"}

@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="047c8ce2-8bd4-422f-b857-0b4f6ef36e40" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postTest/13246839034_postTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/postTest/13246839034_postTest.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/preTest/13246839034_preTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/preTest/13246839034_preTest.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/process_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/process_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/postTest.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/postTest.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/preTest.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/preTest.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/test.js" afterDir="false" />
@@ -36,13 +36,13 @@
         <option value="bolixinyu &lt;2410781627@qq.com&gt;" />
       </list>
     </option>
-    <option name="ROOT_SYNC" value="DONT_SYNC" />
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="ProjectId" id="1OdPfXZ3hAUQD2Cqf2q7ej3Qx3O" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -51,7 +51,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="C:/Program Files/Git/git-bash.exe" />
+    <property name="last_opened_file_path" value="E:/学校/实验室/先进院/步态/data_set" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -149,7 +149,12 @@
       <workItem from="1566020480210" duration="2569000" />
       <workItem from="1566023075528" duration="1488000" />
       <workItem from="1566178227622" duration="173000" />
-      <workItem from="1566178619968" duration="3281000" />
+      <workItem from="1566178619968" duration="3542000" />
+      <workItem from="1566184823873" duration="6979000" />
+      <workItem from="1566265092678" duration="1722000" />
+      <workItem from="1566283150639" duration="1246000" />
+      <workItem from="1566284456961" duration="784000" />
+      <workItem from="1566285366843" duration="617000" />
     </task>
     <task id="LOCAL-00001" summary="提高复用性">
       <created>1565078217598</created>
@@ -249,7 +254,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565948001079</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="网站bug修复">
+      <created>1566200170215</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1566200170215</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -313,7 +325,8 @@
     <MESSAGE value="应甲方要求，叒次改版" />
     <MESSAGE value="实现csv导入" />
     <MESSAGE value="网站完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="网站完成" />
+    <MESSAGE value="网站bug修复" />
+    <option name="LAST_COMMIT_MESSAGE" value="网站bug修复" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

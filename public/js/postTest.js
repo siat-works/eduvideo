@@ -76,7 +76,25 @@ $('#submit').click(function (e) {
     if (answerData == null || answerData.answeredNum < 13) {
         alert("请您答完所有题目才能提交")
     } else {
-        data = answerData;
+        data = {
+            id: answerData.id,
+            phone: answerData.phone,
+            choice0: answerData.choice[0],
+            choice1: answerData.choice[1],
+            choice2: answerData.choice[2],
+            choice3: answerData.choice[3],
+            choice4: answerData.choice[4],
+            choice5: answerData.choice[5],
+            choice6: answerData.choice[6],
+            choice7: answerData.choice[7],
+            choice8: answerData.choice[8],
+            gender: answerData.gender,
+            age: answerData.age,
+            major: answerData.major,
+            level: answerData.level,
+            video: answerData.video,
+            answeredNum: answerData.answeredNum
+        };
         $.ajax({
             type: 'post',
             url: 'http://' + server.ip + ':' + server.port + '/users/postTest',

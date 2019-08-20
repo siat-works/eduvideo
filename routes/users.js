@@ -1,7 +1,7 @@
 var express = require('express');
 const mysql = require('mysql');
-var fileupload=require('express-fileupload');
-var csv=require('node-csv');
+var fileupload = require('express-fileupload');
+var csv = require('node-csv');
 var db = require('../config/config');
 var query = require('../config/sql_query');
 var online_num = 0;
@@ -235,17 +235,17 @@ router.post('/admin/uploadFile', function (req, res) {
     var file = req.files.files;
     var fs = require('fs');
     console.log(file.name);
-    file.mv('processedData/'+file.name);
-    var parser=csv.createParser();
-    parser.parseFile('processedData/'+file.name,function (err,data) {
+    file.mv('processedData/' + file.name);
+    var parser = csv.createParser();
+    parser.parseFile('processedData/' + file.name, function (err, data) {
         if (err)
             throw err;
         else {
-            for (var i=1;i<data.length;i++){
+            for (var i = 1; i < data.length; i++) {
                 // console.log(data[i]);
-                var phone=data[i][0];
-                var name =data[i][1];
-                var note =data[i][2];
+                var phone = data[i][0];
+                var name = data[i][1];
+                var note = data[i][2];
                 // connection.query(query.user.selectByPhone,phone,function (err,result) {
                 //     if (err)
                 //         throw err;
@@ -265,7 +265,7 @@ router.post('/admin/uploadFile', function (req, res) {
                 // });
                 connection.query(query.user.insertByAll, [phone, name, note], function (err, result) {
                     if (err) {
-                        console.log(phone+'已存在');
+                        console.log(phone + '已存在');
                     } else {
                         console.log('插入成功')
                     }
@@ -329,52 +329,46 @@ router.post('/preTest', function (req, res) {
     //         })
     //     }
     // });
-    connection.query(query.user.update, [params.gender, params.id], function (err, result) {
+    console.log("修改成功");
+    /**
+     * 插入相关项到数据库
+     */
+    connection.query(query.questionnarre.query, params.id, function (err, result) {
         if (err) {
             throw err;
         } else {
-            console.log("修改成功");
-            /**
-             * 插入相关项到数据库
-             */
-            connection.query(query.questionnarre.query, params.id, function (err, result) {
-                if (err) {
-                    throw err;
-                } else {
-                    if (result.length == 0) {
-                        connection.query(query.questionnarre.insert, params.id, function (err, result) {
-                            if (err) {
-                                throw err;
-                            } else {
-                                console.log("插入questionnaire完成");
-                            }
-                        })
+            if (result.length == 0) {
+                connection.query(query.questionnarre.insert, params.id, function (err, result) {
+                    if (err) {
+                        throw err;
+                    } else {
+                        console.log("插入questionnaire完成");
                     }
-                }
-            });
-            var fs = require("fs");//申请文件处理
-            var rawdata = JSON.stringify(params);
-            var filepath = "preTest/" + params.phone + "_preTest.txt";//文件路径
-            fs.writeFile(filepath, rawdata, function (err) {
-                if (err) {
-                    throw err;
-                } else {
-                    connection.query(query.questionnarre.updatePreTest, [filepath, params.id], function (err, result) {
-                        if (err) {
-                            throw err;
-                        } else {
-                            console.log('success');
-                            res.send({
-                                status: 0,
-                                msg: 'test 上传成功',
-                            });
-                            res.end();
-                        }
-                    });
-                }
-            })
+                })
+            }
         }
     });
+    var fs = require("fs");//申请文件处理
+    var rawdata = JSON.stringify(params);
+    var filepath = "preTest/" + params.phone + "_preTest.txt";//文件路径
+    fs.writeFile(filepath, rawdata, function (err) {
+        if (err) {
+            throw err;
+        } else {
+            connection.query(query.questionnarre.updatePreTest, [filepath, params.id], function (err, result) {
+                if (err) {
+                    throw err;
+                } else {
+                    console.log('success');
+                    res.send({
+                        status: 0,
+                        msg: 'test 上传成功',
+                    });
+                    res.end();
+                }
+            });
+        }
+    })
 });
 
 router.post('/test', function (req, res) {
@@ -406,9 +400,9 @@ router.post('/test', function (req, res) {
 
 
 router.post('/postTest', function (req, res) {
-    console.log(res.body);
+    console.log(req.body);
     var params = req.body;
-    connection.query(query.user.update, [params.gender, params.id], function (err, result) {
+    connection.query(query.user.updateGender, [params.gender, params.id], function (err, result) {
         if (err) {
             throw err;
         } else {

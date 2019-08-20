@@ -153,7 +153,22 @@ $('#submit').click(function (e) {
     if (answerData == null || answerData.answeredNum < 9) {
         window.localStorage.setItem("answer", JSON.stringify(answerData));
         if (confirm("您还有题目尚未完成，您是否确认提交答卷？")){
-            data = answerData;
+            data = {
+                id: answerData.id,
+                choice0: answerData.choice[0],
+                choice1: answerData.choice[1],
+                choice2: answerData.choice[2],
+                choice3: answerData.choice[3],
+                choice4: answerData.choice[4],
+                text0: answerData.text[0],
+                text1: answerData.text[1],
+                text2: answerData.text[2],
+                code: answerData.code,
+                score: answerData.score,
+                video: answerData.video,
+                phone: answerData.phone,
+                answeredNum: answerData.answeredNum
+            };
             $.ajax({
                 type: 'post',
                 url: 'http://' + server.ip + ':' + server.port + '/users/test',
@@ -188,7 +203,22 @@ $('#submit').click(function (e) {
         }
     } else {
         if(confirm("是否确认提交答卷？")){
-        data = answerData;
+        data = {
+            id: answerData.id,
+            choice0: answerData.choice[0],
+            choice1: answerData.choice[1],
+            choice2: answerData.choice[2],
+            choice3: answerData.choice[3],
+            choice4: answerData.choice[4],
+            text0: answerData.text[0],
+            text1: answerData.text[1],
+            text2: answerData.text[2],
+            code: answerData.code,
+            score: answerData.score,
+            video: answerData.video,
+            phone: answerData.phone,
+            answeredNum: answerData.answeredNum
+        };
         $.ajax({
             type: 'post',
             url: 'http://' + server.ip + ':' + server.port + '/users/test',

@@ -6,7 +6,7 @@ answerData={
     choice:[],
     video: expdata==null?-1:expdata.videoId,
     answeredNum:0,
-}
+};
 $(document).ready(function () {
     if (expdata != null) {
         $('#user').text(expdata.phone);
@@ -52,7 +52,17 @@ $('#submit').click(function (e) {
     if (answerData == null || answerData.answeredNum < 5) {
         alert("请您回答完所有问题后才能提交并进入下一步")
     } else {
-        data = answerData;
+        data = {
+            id: answerData.id,
+            phone: answerData.phone,
+            pre_questionnaire_choice0:answerData.choice[0],
+            pre_questionnaire_choice1:answerData.choice[1],
+            pre_questionnaire_choice2:answerData.choice[2],
+            pre_questionnaire_choice3:answerData.choice[3],
+            pre_questionnaire_choice4:answerData.choice[4],
+            video: answerData.video,
+            answeredNum:answerData.answeredNum
+        };
         $.ajax({
             type: 'post',
             url: 'http://' + server.ip + ':' + server.port + '/users/preTest',
